@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tour Packages - Duya Discoveries</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .category-section {
+      margin-bottom: 3rem;
+    }
+
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .package-stack {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+      height: 400px;
+    }
+
+    .package-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-in-out;
+      z-index: 0;
+    }
+
+    .package-card.active {
+      opacity: 1;
+      transform: translateY(0);
+      z-index: 2;
+    }
+
+    .package-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .package-card h4 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .package-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .btn-book {
+      background-color: #2e7d32;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-top: 1rem;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn-book:hover {
+      background-color: #1b5e20;
+    }
+
+    .arrows {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .arrow-btn {
+      background-color: rgba(46, 125, 50, 0.8); /* Soft green */
+      color: white;
+      border: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .arrow-btn:hover {
+      background-color: #2e7d32;
+      transform: scale(1.1);
+    }
+
+    .arrow-icon {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="logo">Duya Discoveries</div>
+    <nav class="menu" id="mainMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Tours</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('https://source.unsplash.com/1600x600/?uganda,nature');">
+    <h1>Explore Our Tour Packages</h1>
+    <p>Swipe through our curated experiences across Uganda.</p>
+  </section>
+
+  <!-- Wildlife Safaris -->
+  <section class="category-section">
+    <h2 class="category-title">🌿 Wildlife Safaris</h2>
+    <div class="package-stack" id="wildlifeStack">
+      <div class="package-card active">
+        <img src="https://source.unsplash.com/400x250/?gorilla" alt="Gorilla Trekking" />
+        <h4>Gorilla Trekking in Bwindi</h4>
+        <p>Track endangered mountain gorillas in one of the most beautiful rainforests in the world.</p>
+        <a href="contact.html?package=Gorilla Trekking in Bwindi" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?lion" alt="Lion Tracking" />
+        <h4>Lion Tracking in Queen Elizabeth Park</h4>
+        <p>Spot lions on an open savannah while enjoying a classic African safari experience.</p>
+        <a href="contact.html?package=Lion Tracking in Queen Elizabeth Park" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?elephant" alt="Elephant Walk" />
+        <h4>Murchison Falls Elephant Walk</h4>
+        <p>Walk with elephants and learn about their behavior from expert guides.</p>
+        <a href="contact.html?package=Murchison Falls Elephant Walk" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?rhino" alt="Rhino Tracking" />
+        <h4>Rhino Tracking in Ziwa Sanctuary</h4>
+        <p>Experience close encounters with rhinos in a safe and protected environment.</p>
+        <a href="contact.html?package=Rhino Tracking in Ziwa Sanctuary" class="btn-book">Book Now</a>
+      </div>
+    </div>
+    <div class="arrows">
+      <button class="arrow-btn" onclick="prevCard('wildlifeStack')" title="Previous">
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M15 19l-7-7 7-7z"/>
+        </svg>
+      </button>
+      <button class="arrow-btn" onclick="nextCard('wildlifeStack')" title="Next">
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M9 5l7 7-7 7z"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Cultural Experiences -->
+  <section class="category-section">
+    <h2 class="category-title">🎭 Cultural Experiences</h2>
+    <div class="package-stack" id="culturalStack">
+      <div class="package-card active">
+        <img src="https://source.unsplash.com/400x250/?uganda-village" alt="Village Life" />
+        <h4>Village Homestay Experience</h4>
+        <p>Live like a local and immerse yourself in traditional Ugandan village life.</p>
+        <a href="contact.html?package=Village Homestay Experience" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?tribal-dance" alt="Traditional Dance" />
+        <h4>Traditional Dance & Music</h4>
+        <p>Enjoy vibrant performances by local dancers and musicians.</p>
+        <a href="contact.html?package=Traditional Dance & Music" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?craft-market" alt="Craft Market" />
+        <h4>Local Crafts & Markets</h4>
+        <p>Shop handmade crafts directly from artisans at local markets.</p>
+        <a href="contact.html?package=Local Crafts & Markets" class="btn-book">Book Now</a>
+      </div>
+      <div class="package-card">
+        <img src="https://source.unsplash.com/400x250/?local-food" alt="Ugandan Cuisine" />
+        <h4>Ugandan Cuisine Tasting</h4>
+        <p>Sample authentic Ugandan dishes prepared by local chefs.</p>
+        <a href="contact.html?package=Ugandan Cuisine Tasting" class="btn-book">Book Now</a>
+      </div>
+    </div>
+    <div class="arrows">
+      <button class="arrow-btn" onclick="prevCard('culturalStack')" title="Previous">
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M15 19l-7-7 7-7z"/>
+        </svg>
+      </button>
+      <button class="arrow-btn" onclick="nextCard('culturalStack')" title="Next">
+        <svg class="arrow-icon" viewBox="0 0 24 24">
+          <path d="M9 5l7 7-7 7z"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Duya Discoveries. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Swipe Functionality -->
+  <script>
+    const stacks = {};
+
+    // Initialize each stack
+    document.querySelectorAll('.package-stack').forEach(stack => {
+      const cards = Array.from(stack.querySelectorAll('.package-card'));
+      stacks[stack.id] = {
+        cards,
+        currentIndex: 0
+      };
+    });
+
+    function showCard(stackId, index) {
+      const stack = stacks[stackId];
+      stack.cards.forEach((card, i) => {
+        card.classList.remove('active');
+        if (i === index) {
+          card.classList.add('active');
+        }
+      });
+    }
+
+    function nextCard(stackId) {
+      const stack = stacks[stackId];
+      stack.currentIndex = (stack.currentIndex + 1) % stack.cards.length;
+      showCard(stackId, stack.currentIndex);
+    }
+
+    function prevCard(stackId) {
+      const stack = stacks[stackId];
+      stack.currentIndex = (stack.currentIndex - 1 + stack.cards.length) % stack.cards.length;
+      showCard(stackId, stack.currentIndex);
+    }
+  </script>
+
+  <!-- Mobile Menu Toggle -->
+  <script src="script.js"></script>
+</body>
+</html>
