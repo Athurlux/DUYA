@@ -159,17 +159,6 @@ footer {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .menu {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #2e7d32;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    padding: 1rem 2rem;
-  }
 
   .menu.active {
     transform: translateY(0);
