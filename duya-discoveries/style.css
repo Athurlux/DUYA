@@ -25,14 +25,8 @@ body {
   z-index: 1000;
 }
 .logo img {
-  max-width: 20%;
+  max-width: 35%;
   height: auto;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  display: flex;
 }
 
 .menu ul {
