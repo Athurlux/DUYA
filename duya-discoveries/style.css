@@ -25,6 +25,7 @@ body {
   z-index: 1000;
 }
 .logo img {
+  width: 45%;
 }
 
 .menu ul {
