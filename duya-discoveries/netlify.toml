@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build && generate-sitemap"  # Example
+  publish = "duya-discoveries"
