@@ -34,7 +34,8 @@ body {
   font-weight: bold;
   max-width: 20%;
   height: auto;
-  position: relative;
+  position: absolutely;
+  margin: 0;
 }
 
 .menu ul {
