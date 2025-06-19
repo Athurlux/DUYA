@@ -25,7 +25,9 @@ body {
   z-index: 1000;
 }
 .logo img {
-  width: 45%;
+    height: 50px; /* Adjust as needed - maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Removes any extra space below the image */
 }
 
 .menu ul {
