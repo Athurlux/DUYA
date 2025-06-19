@@ -26,7 +26,7 @@ body {
 }
 .logo img {
     height: 100%; /* Adjust as needed - maintain aspect ratio */
-    width: auto; /* Maintain aspect ratio */
+    width: 100%; /* Maintain aspect ratio */
     display: block; /* Removes any extra space below the image */
 }
 
