@@ -25,7 +25,7 @@ body {
   z-index: 1000;
 }
 .logo img {
-    height: 360px; /* Adjust as needed - maintain aspect ratio */
+    height: 10%; /* Adjust as needed - maintain aspect ratio */
     width: auto; /* Maintain aspect ratio */
     display: block; /* Removes any extra space below the image */
 }
