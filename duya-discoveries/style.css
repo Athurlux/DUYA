@@ -24,7 +24,7 @@ body {
   top: 0;
   z-index: 1000;
 }
- .navbar, .logo img {
+.logo img {
     height: 100%; /* Adjust as needed - maintain aspect ratio */
     width: auto; /* Maintain aspect ratio */
     display: block; /* Removes any extra space below the image */
