@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+      
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="assets/css/responsive.css">
+      <link rel="stylesheet" href="assets/css/base.css">
+
+
+      <!--=============== TITLE ===============-->
+      <title>DUYA DISCOVERIES</title>
+  <style>
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #0b3d2e;
+      border-bottom: 2px solid #18a057;
+      padding-bottom: 8px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .checkbox-group input {
+      margin-right: 8px;
+    }
+
+    button {
+      background: #18a057;
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: #0b3d2e;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #d4edda;
+      color: #155724;
+      font-weight: bold;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f8d7da;
+      color: #721c24;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px;
+        padding: 15px;
+      }
+
+      header h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header" class="header">
+      <div class="header__wrapper">
+        <!-- Logo -->
+        <div class="header__logo">
+          <img src="assets/images/logo1.png" alt="" class="header__logo-img">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="header__right">
+
+          <!-- Top Bar -->
+          <div class="top__bar">
+            <div class="top__bar-left">
+              <span><i class="ri-map-pin-line"></i>Bukoto Kisasi Rd, Kampala</span>
+              <span><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</span>
+            </div>
+
+            <div class="top__bar-right">
+              <div class="top__bar-icons">
+                <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Navbar -->
+          <nav class="main__nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="index.html" class="nav__link">Home</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="tours/tours.html" class="nav__link">Tours<i class="ri-arrow-down-s-line"></i></a>
+                <ul class="nav__dropdown">
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#gt" class="nav__dropdown-link">Gorrilla Trekking</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#ft" class="nav__dropdown-link">Farm Tours</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#np" class="nav__dropdown-link">National Parks</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav__item">
+                <a href="destination/destination.html" class="nav__link">Destination</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="about.html" class="nav__link">About Us</a>
+              </li>
+              <li class="nav__item">
+                <a href="contact.html" class="nav__link">Contacts</a>
+              </li>
+            </ul>
+
+
+            <div class="right-content">
+              <div class="phone">
+                <i class="ri-phone-fill"></i>
+                <div class="phone__text">
+                  <span>Call Anytime</span>
+                  <strong class="phone__number">+256 753 868152</strong>
+                </div>
+              </div>
+              <a href="booking.html"><button class="btn">Start Booking</button></a>
+            </div>
+
+            <div class="menu-icon" id="menu-icon"><i class="ri-menu-3-fill"></i></div>
+          </nav>
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
+       <div class="sidebar" id="sidebar">
+        <div class="slidbar__header">
+          <div class="sidebar__logo">
+            <img src="assets/images/logo2.png" alt="" class="sidebar__logo-img">
+          </div>
+          <div class="close-icon" id="close-icon"><i class="ri-close-fill"></i></div>
+        </div>
+
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="index.html" class="sidebar__link">Home</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="tours/tours.html" class="sidebar__link">Tours<i class="ri-arrow-right-s-line"></i></a>
+            <ul class="sidebar__dropdown">
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#gt" class="sidebar__dropdown-link">Gorrilla Trekking</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#ft" class="sidebar__dropdown-link">Farm Tours</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#np" class="sidebar__dropdown-link">National Parks</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="destination/destination.html" class="sidebar__link">Destination</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="about.html" class="sidebar__link">About Us</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="contact.html" class="sidebar__link">Contact</a>
+          </li>
+        </ul>
+        
+
+        <div class="sidebar__socials">
+          <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+        </div>
+       </div>
+    </header>
+
+  <div class="container">
+    <form id="bookingForm">
+
+  <!-- Traveler Information -->
+  <div class="form-section">
+    <h2>Traveler Information</h2>
+
+    <label for="fullname">Full Legal Name</label>
+    <input type="text" id="fullname" name="fullname" required>
+
+    <label for="dob">Date of Birth</label>
+    <input type="date" id="dob" name="dob" required>
+
+    <label for="nationality">Nationality</label>
+    <input type="text" id="nationality" name="nationality" required>
+
+    <label for="passport">Passport / ID Number</label>
+    <input type="text" id="passport" name="passport" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" required>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address">
+  </div>
+
+  <!-- Tour Selection -->
+  <div class="form-section">
+    <h2>Tour Selection</h2>
+
+    <label for="tour">Choose a Tour Option</label>
+    <select id="tour" name="tour" required>
+      <option value="">-- Select Tour --</option>
+      <option value="Uganda Safari">Uganda Safari</option>
+      <option value="Kenya Safari">Kenya Safari</option>
+      <option value="Rwanda Safari">Rwanda Safari</option>
+      <option value="Tanzania Safari">Tanzania Safari</option>
+      <option value="Zanzibar Holiday">Zanzibar Holiday</option>
+      <option value="Farm Tour">Farm Tour</option>
+      <option value="Honeymoon">Honeymoon Package</option>
+      <option value="Gorilla Trekking">Gorilla Trekking</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="tourDesc">Tour Description</label>
+    <textarea id="tourDesc" name="tourDesc" placeholder="Describe your chosen tour..."></textarea>
+
+    <label for="departureDate">Date of Departure</label>
+    <input type="date" id="departureDate" name="departureDate" required>
+
+    <label for="numAdults">Number of Adults</label>
+    <input type="number" id="numAdults" name="numAdults" min="1" value="1" required>
+
+    <label for="numChildren">Number of Children</label>
+    <input type="number" id="numChildren" name="numChildren" min="0" value="0">
+
+    <label for="accommodation">Accommodation Preference</label>
+    <select id="accommodation" name="accommodation">
+      <option value="">-- Select Preference --</option>
+      <option value="Budget">Budget</option>
+      <option value="Mid-range">Mid-range</option>
+      <option value="Luxury">Luxury</option>
+    </select>
+
+    <label for="specialRequests">Special Requests (dietary, mobility, etc.)</label>
+    <textarea id="specialRequests" name="specialRequests"></textarea>
+  </div>
+
+  <!-- Pickup Info -->
+  <div class="form-section">
+    <h2>Pickup Information</h2>
+    <label for="pickupStation">Pickup Station</label>
+    <input type="text" id="pickupStation" name="pickupStation">
+
+    <label for="pickupAddress">Pickup Address</label>
+    <input type="text" id="pickupAddress" name="pickupAddress">
+  </div>
+
+  <!-- Emergency Contact -->
+  <div class="form-section">
+    <h2>Emergency Contact</h2>
+
+    <label for="emgName">Full Name</label>
+    <input type="text" id="emgName" name="emgName" required>
+
+    <label for="emgRelationship">Relationship</label>
+    <input type="text" id="emgRelationship" name="emgRelationship" required>
+
+    <label for="emgPhone">Phone Number</label>
+    <input type="text" id="emgPhone" name="emgPhone" required>
+
+    <label for="emgEmail">Email</label>
+    <input type="email" id="emgEmail" name="emgEmail">
+
+    <label for="emgAddress">Address</label>
+    <input type="text" id="emgAddress" name="emgAddress">
+  </div>
+
+  <!-- Payment -->
+  <div class="form-section">
+    <h2>Payment</h2>
+
+    <div class="checkbox-group">
+      <input type="radio" id="paidYes" name="paymentStatus" value="Paid" required>
+      <label for="paidYes">I have already made payment</label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="radio" id="paidNo" name="paymentStatus" value="Not Paid" required>
+      <label for="paidNo">I will pay on arrival / later</label>
+    </div>
+
+    <label for="paymentMethod">Preferred Payment Method</label>
+    <select id="paymentMethod" name="paymentMethod">
+      <option value="">-- Select Method --</option>
+      <option value="Mobile Money">Mobile Money</option>
+      <option value="Bank Transfer">Bank Transfer</option>
+      <option value="Credit/Debit Card">Credit/Debit Card</option>
+      <option value="Cash">Cash</option>
+    </select>
+  </div>
+
+  <!-- Consent -->
+  <div class="form-section">
+    <h2>Consent</h2>
+    <div class="checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="privacy" name="privacy" required>
+      <label for="privacy">I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="newsletter" name="newsletter">
+      <label for="newsletter">(Optional)Subscribe me to Duya Discoveries offers & updates</label>
+    </div>
+  </div>
+
+  <button type="submit">Submit Booking</button>
+
+  <div class="success-message" id="successMsg">
+    ✅ Thank you! Your booking has been submitted successfully.
+  </div>
+  <div class="error-message" id="errorMsg">
+    ❌ Something went wrong. Please try again.
+  </div>
+    </form>
+
+  </div>
+
+  <script>
+  const form = document.getElementById("bookingForm");
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = {
+      fullname: document.getElementById("fullname").value,
+      dob: document.getElementById("dob").value,
+      nationality: document.getElementById("nationality").value,
+      passport: document.getElementById("passport").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("address").value,
+
+      tour: document.getElementById("tour").value,
+      tourDesc: document.getElementById("tourDesc").value,
+      departureDate: document.getElementById("departureDate").value,
+      numAdults: document.getElementById("numAdults").value,
+      numChildren: document.getElementById("numChildren").value,
+      accommodation: document.getElementById("accommodation").value,
+      specialRequests: document.getElementById("specialRequests").value,
+
+      pickupStation: document.getElementById("pickupStation").value,
+      pickupAddress: document.getElementById("pickupAddress").value,
+
+      emgName: document.getElementById("emgName").value,
+      emgRelationship: document.getElementById("emgRelationship").value,
+      emgPhone: document.getElementById("emgPhone").value,
+      emgEmail: document.getElementById("emgEmail").value,
+      emgAddress: document.getElementById("emgAddress").value,
+
+      paymentStatus: document.querySelector('input[name="paymentStatus"]:checked').value,
+      paymentMethod: document.getElementById("paymentMethod").value,
+
+      terms: document.getElementById("terms").checked,
+      privacy: document.getElementById("privacy").checked,
+      newsletter: document.getElementById("newsletter").checked
+    };
+
+    fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.text())
+    .then(data => {
+      if (data.includes("Success")) {
+        successMsg.style.display = "block";
+        errorMsg.style.display = "none";
+        form.reset();
+      } else {
+        throw new Error(data);
+      }
+    })
+    .catch(err => {
+      successMsg.style.display = "none";
+      errorMsg.style.display = "block";
+      console.error("Error:", err);
+    });
+  });
+  </script>
+
+  <!--=============== SCROLLREVEAL ===============--> 
+      <script src="https://unpkg.com/scrollreveal"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/script.js"></script>
+
+</body>
+</html>
