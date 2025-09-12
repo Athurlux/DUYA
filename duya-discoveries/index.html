@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+      
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="assets/css/responsive.css">
+      <link rel="stylesheet" href="assets/css/base.css">
+
+
+      <!--=============== TITLE ===============-->
+      <title>DUYA DISCOVERIES</title>
+
+      <!--=============== CHATBOT ==============-->
+      <style>
+        #chat-btn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #25d366;
+          color: white;
+          font-size: 24px;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          z-index: 1000;
+        }
+        #chat-window {
+          position: fixed;
+          bottom: 90px;
+          right: 20px;
+          width: 300px;
+          height: 400px;
+          border-radius: 12px;
+          border: 1px solid #ccc;
+          background: white;
+          display: none;
+          flex-direction: column;
+          box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+          overflow: hidden;
+          z-index: 1000;
+        }
+        #chat-header {
+          background: #25d366;
+          color: white;
+          padding: 10px;
+          font-weight: bold;
+          text-align: center;
+        }
+        #chatbox {
+          flex: 1;
+          padding: 10px;
+          overflow-y: auto;
+          font-size: 14px;
+        }
+        #chat-input-area {
+          display: flex;
+          border-top: 1px solid #ddd;
+        }
+        #userInput {
+          flex: 1;
+          padding: 10px;
+          border: none;
+        }
+        #chat-input-area button {
+          background: #25d366;
+          border: none;
+          color: white;
+          padding: 10px 15px;
+          cursor: pointer;
+        }
+ /* WhatsApp button (left, lower) */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;   /* Lower position */
+  left: 20px;     /* On the left side */
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+/* Back to Top button (left, higher) */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 90px;   /* Higher than WhatsApp */
+  left: 20px;     /* On the left side */
+  z-index: 100;
+  border: none;
+  outline: none;
+  background-color: #25d366;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+#backToTop:hover {
+  background-color: #128c7e;
+}
+ #bookNowBtn {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translate(150%, -50%); /* start offscreen to the right */
+    background: #18a057;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    opacity: 0;               
+    pointer-events: none;     
+    transition: transform 0.8s ease, opacity 0.8s ease; /* smooth fade + slide */
+  }
+
+  #bookNowBtn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(0, -50%); /* slide into view */
+    animation: pulse 1.5s infinite;
+  }
+
+  #bookNowBtn:hover {
+    background: #0b3d2e;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0%   { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0.6); }
+    70%  { transform: translate(0, -50%) scale(1.1); box-shadow: 0 0 0 15px rgba(24,160,87,0); }
+    100% { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0); }
+  }
+
+  /* 📱 Mobile adjustments */
+  @media (max-width: 768px) {
+    #bookNowBtn {
+      top: 70%;            /* move lower */
+      padding: 10px 18px;  /* slightly smaller */
+      font-size: 14px;
+    }
+
+    #bookNowBtn.show {
+      transform: translate(0, -50%); /* still slide in properly */
+    }
+  }
+</style>
+
+
+
+   </head>
+   <body>
+
+
+      <!--==================== 
+               HEADER
+       ====================-->
+    
+    <header id="header" class="header">
+      <div class="header__wrapper">
+        <!-- Logo -->
+        <div class="header__logo">
+          <img src="assets/images/logo1.png" alt="" class="header__logo-img">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="header__right">
+
+          <!-- Top Bar -->
+          <div class="top__bar">
+            <div class="top__bar-left">
+              <span><i class="ri-map-pin-line"></i>Bukoto Kisasi Rd, Kampala</span>
+              <span><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</span>
+            </div>
+
+            <div class="top__bar-right">
+              <div class="top__bar-icons">
+                <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Navbar -->
+          <nav class="main__nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="index.html" class="nav__link">Home</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="tours/tours.html" class="nav__link">Tours<i class="ri-arrow-down-s-line"></i></a>
+                <ul class="nav__dropdown">
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#gt" class="nav__dropdown-link">Gorrilla Trekking</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#ft" class="nav__dropdown-link">Farm Tours</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="tours/tours.html#np" class="nav__dropdown-link">National Parks</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav__item">
+                <a href="destination/destination.html" class="nav__link">Destination</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="about.html" class="nav__link">About Us</a>
+              </li>
+              <li class="nav__item">
+                <a href="contact.html" class="nav__link">Contacts</a>
+              </li>
+            </ul>
+
+
+            <div class="right-content">
+              <div class="phone">
+                <i class="ri-phone-fill"></i>
+                <div class="phone__text">
+                  <span>Call Anytime</span>
+                  <strong class="phone__number">+256 753 868152</strong>
+                </div>
+              </div>
+              <a href="booking.html"><button class="btn">Start Booking</button></a>
+            </div>
+
+            <div class="menu-icon" id="menu-icon"><i class="ri-menu-3-fill"></i></div>
+          </nav>
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
+       <div class="sidebar" id="sidebar">
+        <div class="slidbar__header">
+          <div class="sidebar__logo">
+            <img src="assets/images/logo2.png" alt="" class="sidebar__logo-img">
+          </div>
+          <div class="close-icon" id="close-icon"><i class="ri-close-fill"></i></div>
+        </div>
+
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="index.html" class="sidebar__link">Home</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="tours/tours.html" class="sidebar__link">Tours<i class="ri-arrow-right-s-line"></i></a>
+            <ul class="sidebar__dropdown">
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#gt" class="sidebar__dropdown-link">Gorrilla Trekking</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#ft" class="sidebar__dropdown-link">Farm Tours</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="tours/tours.html#np" class="sidebar__dropdown-link">National Parks</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="destination/destination.html" class="sidebar__link">Destination</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="about.html" class="sidebar__link">About Us</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="contact.html" class="sidebar__link">Contact</a>
+          </li>
+        </ul>
+        
+
+        <div class="sidebar__socials">
+          <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+        </div>
+       </div>
+    </header>
+    
+
+      <!--====================
+                HOME
+      ====================-->
+
+
+      <section class="home section" id="home">
+        <div class="home__content">
+          <div class="home__text">
+            <div class="home__subtitle">
+              <span class="home__subtitle-text">We are Duya Discoveries</span>
+            </div>
+            <h1 class="home__title">
+              Explore <span class="home__title-orange">The World</span>
+            </h1>
+            <p class="home__desc">
+              Duya Discoveries offers unforgettable Uganda tours; wildlife safaris, 
+              Cultural experiences, education tours, honeymoon holidays, business tours, 
+              Farm tours private and group tours. Feel your Peak by exploring the hidden gems of the Pearl.
+            </p>
+            <a href="booking.html"><button class="btn hero__btn">Book Now</button></a>
+          </div>
+
+          <!--  images  -->
+          <div class="home__image">
+            <img src="assets/images/map.webp" alt="" class="home__image-map">
+            <img src="assets/images/testimonial__img-4.png" alt="" class="home__image-plane">
+            <img src="assets/images/hero.png" alt="" class="home__image-girl">
+            <img src="assets/images/birds.png" alt="" class="home__image-birds">
+            <img src="assets/images/icon.webp" alt="" class="home__image-icon">
+          </div>
+        </div>
+      </section>
+ 
+  
+
+      <!--====================
+               ABOUT
+      ====================-->
+
+      <section class="about section" id="about">
+        <div class="about__content">
+          <div class="about__topic topic">
+            <i class="topic__icon ri-plane-fill"></i> Get to Know Us
+          </div>
+
+          <h2 class="about__title heading">Experience the World with Duya Discoveries</h2>
+          <p class="about__desc description">We believe travel is more than just visiting new places. It’s about creating unforgettable experiences, forging connections with cultures, and discovering the extraordinary in the ordinary.</p>
+
+          <div class="about__one-container">
+            <img src="assets/images/about_img-3.jpg" alt="" class="about__image-1">
+
+            <div class="about__one-content">
+              <h4 class="about__one-title">Free Consultation</h4>
+              <p class="about__one-desc">Get expert advice and personalized trip planning — no obligation, just great ideas for your East African adventure.</p>
+            </div>
+          </div>
+
+
+          <img src="assets/images/about_img-5.webp" alt="" class="about__image-2">
+
+          <ul class="about__features">
+            <li class="about__features-list"><i class="ri-checkbox-circle-fill"></i> Tell us your dreams, and we’ll craft a tailor-made itinerary just for you — no strings attached.</li>
+            <li class="about__features-list"><i class="ri-checkbox-circle-fill"></i> Unsure where to start? Our travel specialists are ready to guide you through options, tips, and must-see spots.</li>
+            <li class="about__features-list"><i class="ri-checkbox-circle-fill"></i> We help you get the most out of your adventure without breaking the bank, with transparent advice and flexible options.</li>
+          </ul>
+
+
+          <a href="about.html"><button class="btn">Explore More</button></a>
+        </div>
+
+        <div class="about__images">
+          <img src="assets/images/about_img-1.jpg" alt="" class="about__image-3">
+
+          <div class="tagline">
+            <span>Beautiful Place</span>
+          </div>
+
+
+          <img src="assets/images/about_img-2.jpg" alt="" class="about__image-4">
+          <img src="assets/images/about_img-4.png" alt="" class="about__image-5">
+        </div>
+      </section>
+
+
+
+      <!--====================
+              MEMORIES 
+      ====================-->
+
+      <section class="memories section" id="memories">
+        <div class="memories__intro">
+          <div class="about__topic topic">
+            <i class="topic__icon ri-plane-fill"></i> Get to Memories
+          </div>
+
+          <h2 class="memories__titile heading">
+            Lifelong Memories Just <br> A Few Days Away
+          </h2>
+          <div class="memories__btn-group">
+            <a href="tours/tours.html" class="memories__btn memories__btn-primary">Join with us</a>
+            <a href="tours/tours.html" class="memories__btn memories__btn-outline">Learn More</a>
+          </div>
+        </div>
+
+        <div class="memories__content">
+          <div class="memories__images-box">
+            <img src="assets/images/memorie_img-1.png" alt="" class="memories__image-1">
+          </div>
+
+          <div class="memories__activities">
+            <img src="assets/images/memorie_img-5.png" alt="" class="memories__image-5">
+            <img src="assets/images/memorie_img-6.webp" alt="" class="memories__image-6">
+            <img src="assets/images/memorie_img-7.webp" alt="" class="memories__image-7">
+
+
+            <div class="memories__box">
+              <div class="memories__question">
+                <strong class="memories__question-title">What Excites <br> You Most?</strong>
+                <hr class="memories__question-line">
+              </div>
+
+              <div class="memories__activity-list">
+                <div class="memories__activity">
+                  <span class="memories__activity-number">01</span>
+                  <img src="assets/images/memorie_img-2.webp" alt="" class="memories__image-2">
+
+                  <div class="memories__activity-text">
+                    <h4 class="memories__activity-title">Trekking</h4>
+                    <p class="memories__activity-desc">Explore the wild on foot — unforgettable trekking across East Africa’s iconic landscapes.</p>
+                  </div>
+                </div>
+
+                <div class="memories__activity">
+                  <span class="memories__activity-number">02</span>
+                  <img src="assets/images/memorie_img-3.webp" alt="" class="memories__image-3">
+
+                  <div class="memories__activity-text">
+                    <h4 class="memories__activity-title">Rafting</h4>
+                    <p class="memories__activity-desc">Paddle through excitement — unforgettable white-water rafting on Africa’s greatest river.</p>
+                  </div>
+                </div>
+
+                <div class="memories__activity">
+                  <span class="memories__activity-number">03</span>
+                  <img src="assets/images/memorie_img-4.webp" alt="" class="memories__image-4">
+
+                  <div class="memories__activity-text">
+                    <h4 class="memories__activity-title">Windsurfing</h4>
+                    <p class="memories__activity-desc">Ride the wind and waves — windsurfing thrills for all skill levels.</p>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+ 
+
+
+      <!--==================== 
+              FEATURE
+      ====================-->
+
+      <section class="features section" id="features" style="background-image:url(assets/images/feature.png);">
+        <div class="features__container">
+          <div class="features__left">
+            <div class="faetures__topic topic">
+              <i class="topic__icon ri-plane-fill"></i> Best Features
+            </div>
+
+            <h2 class="features__title heading">We Provide You Best Travel Options</h2>
+            <p class="features__desc description">Whether you're seeking adventure, relaxation, culture, or wildlife, Duya Discoveries offers flexible travel options tailored to your pace and passion. Choose from guided group tours, private getaways, family packages, educational trips, or fully customized journeys across East Africa.</p>
+          </div>
+
+          <div class="features__right">
+            <div class="features__card-wrapper">
+              <span class="features__number">01</span>
+              <div class="features__card">
+                <img src="assets/images/feature_icon-1.png" alt="" class="feature__images-icon">
+                <h3 class="features__card-title">Lots of Choices</h3>
+                <p class="features__card-desc">From luxury lodges to camping under the stars, cultural trails to adrenaline-packed adventures — Duya Discoveries offers a rich mix of travel styles to match every dream and budget.</p>
+              </div>
+            </div>
+
+            <div class="features__card-wrapper">
+              <span class="features__number">02</span>
+              <div class="features__card">
+                <img src="assets/images/feature_icon-2.png" alt="" class="feature__images-icon">
+                <h3 class="features__card-title">Best Tour Guide</h3>
+                <p class="features__card-desc">Travel with East Africa’s finest guides — trusted, trained, and truly unforgettable.</p>
+              </div>
+            </div>
+
+            <div class="features__card-wrapper">
+              <span class="features__number">03</span>
+              <div class="features__card">
+                <img src="assets/images/feature_icon-3.png" alt="" class="feature__images-icon">
+                <h3 class="features__card-title">Easy Booking</h3>
+                <p class="features__card-desc">Book your East African adventure easily and confidently with Duya Discoveries.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+      </section>
+ 
+
+
+      <!--====================
+               NATURE
+       ====================-->
+
+       <section class="nature section" id="nature">
+        <div class="nature__intro">
+          <div class="nature__topic topic">
+            <i class="topic__icon ri-plane-fill"></i> Touch of Nature
+          </div> 
+          <h2 class="nature__title heading">Discover the touch of Nature</h2>
+          <p class="nature__desc description">Step into the wild and feel the heartbeat of East Africa. With Duya Discoveries, nature is not just a destination — it’s an experience that awakens your soul.
+
+            Breathe in the crisp air of the Rwenzori mountains, listen to the whispers of ancient forests in Bwindi, and follow the rhythms of wildlife on endless savannahs. Let the golden sunrises over Lake Victoria and the soothing songs of tropical birds restore your inner peace.
+            
+            Whether you’re walking barefoot through untouched trails, gazing at misty waterfalls, or witnessing a lion’s roar at dusk — every moment with us reconnects you with the purest form of life.
+            
+            Let nature embrace you, transform you, and remind you of the beauty of simply being.
+            
+            Duya Discoveries – Where nature’s touch becomes your story.</p>
+        </div>
+
+        <img src="assets/images/nature_img-1.png" alt="" class="nature__image-1">
+        <img src="assets/images/nature_img-2.webp" alt="" class="nature__image-2">
+        <img src="assets/images/nature_img-3.png" alt="" class="nature__image-3">
+
+
+        <div class="nature__cards">
+          <!-- Card 1 -->
+          <div class="nature__card nature__card-up">
+            <div class="nature__card-image" style="background-image: url('assets/images/lby1.jpeg');">
+              <i class="ri-map-pin-2-fill nature__card-icon"></i>
+              <h4 class="nature__card-title">Lake Bunyonyi</h4>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="nature__card nature__card-down">
+            <div class="nature__card-image" style="background-image: url('assets/images/flmgo.jpeg');">
+              <i class="ri-map-pin-2-fill nature__card-icon"></i>
+              <h4 class="nature__card-title">Lake Nakuru</h4>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="nature__card nature__card-up">
+            <div class="nature__card-image" style="background-image: url('assets/images/np1.jpeg');">
+              <i class="ri-map-pin-2-fill nature__card-icon"></i>
+              <h4 class="nature__card-title">National Parks</h4>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="nature__card nature__card-down">
+            <div class="nature__card-image" style="background-image: url('assets/images/beach.jpg');">
+              <i class="ri-map-pin-2-fill nature__card-icon"></i>
+              <h4 class="nature__card-title">Beaches</h4>
+            </div>
+          </div>
+        </div>
+       </section>
+ 
+
+
+      <!--==================== 
+           DESTINATION
+      ====================-->
+
+      <section class="destination section" id="destination">
+        <div class="destination__container">
+          <div class="destinatio__intro">
+            <div class="destination__topic topic">
+            <i class="topic__icon ri-plane-fill"></i> Top DEstination
+          </div> 
+
+          <h2 class="destinatio__title heading"><strong>Let's Explore</strong>Your Dream <br> Destination Here!</h2>
+          <p class="destinatio__desc description">Journey through East Africa’s most iconic wonders — from gorilla trekking in Bwindi to the beaches of Zanzibar and the wild plains of the Maasai Mara. 
+            Every destination is a new adventure waiting to unfold.
+          </p>
+          </div>
+
+          <!--  Search Box -->
+
+          <div class="destination__grid">
+            <div class="destination__card">
+              <img src="assets/images/zzbr1.jpeg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Zanzibar</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i>Zanzibar, Tanzania</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+
+            <div class="destination__card">
+              <img src="assets/images/inspiration-3.jpg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Kenya</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i> Mombasa</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+
+            <div class="destination__card">
+              <img src="assets/images/mtn1.jpeg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Tanzania</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i>Kilimanjaro</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+
+            <div class="destination__card">
+              <img src="assets/images/tanzania.jpg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Zanzibar</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i>Zanzibar, Tanzania</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+
+            <div class="destination__card">
+              <img src="assets/images/wtf4.jpeg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Uganda</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i>Murchison Falls</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+            <div class="destination__card">
+              <img src="assets/images/RwndaK.jpg" alt="" class="description__image">
+              <div class="destination__card-content">
+                <h4 class="destination__card-title">Rwanda</h4>
+                <p class="destination__card-location"><i class="ri-map-pin-fill"></i>Rwanda</p>
+                <span class="destination__price"></span>
+              </div>
+            </div>
+
+            
+          </div>
+          <a href="destination.html"><button class="btn destinatio__btn">Learn More</button></a>
+        </div>
+      </section>
+ 
+      
+
+      <!--====================
+            testimonial
+      ====================-->
+
+
+      <section class="testimonial section" id="testimonial">
+        <div class="testimonial__container">
+          <!-- Left Side -->
+          <div class="testimonial__left"> 
+            <div class="testimonial__topic topic">
+            <i class="topic__icon ri-plane-fill"></i> What They Say 
+          </div>
+          <h2 class="testimonial__title heading">Experience the World with Our Company</h2>
+ 
+            <div class="testimonial__wrapper">
+              <div class="orange__card "></div>
+              <div class="testimonial__card">
+                <div class="testimonial__quote-mark"><i class="ri-double-quotes-l"></i></div> 
+                <h2 class="testimonial__card-title">— Michael & Jae, USA</h2>
+                  <p class="testimonial__card-desc">
+                    "A flawless honeymoon experience."
+                    "From Lake Bunyonyi to Zanzibar’s beaches, every detail was handled perfectly.
+                  </p>  
+                <div class="testimonial__quote-mark testimonial__quote-mark-right"><i class="ri-double-quotes-r"></i></div>
+              </div>
+
+              <div class="testimonial__user">
+                  <img src="assets/images/user.jpg" alt="" />  
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side -->
+          <div class="testimonial__right">
+            <div class="testimonial__images">
+              <img src="assets/images/testimonial__img-1.jpg" alt="" class="testimonial__image-1"> 
+              <img src="assets/images/testimonial__img-2.jpg" alt="" class="testimonial__image-2"> 
+              <img src="assets/images/testimonial__img-3.webp" alt="" class="testimonial__image-3"> 
+              <img src="assets/images/testimonial__img-4.png" alt="" class="testimonial__image-4"> 
+              <img src="assets/images/testimonial__img-5.png" alt="" class="testimonial__image-5">  
+            </div>
+          </div>
+        </div>
+      </section>
+
+ 
+ 
+      <!--====================
+           Promo Section
+      =====================-->
+
+      <section class="promo section" id="promo" style="background-image: url(assets/images/gray-bg.png);">
+        <div class="promo__text">
+          <h2 class="promo__title heading"></h2>
+          <p class="promo__desc description">Explore the beauty of the world with special travel offers tailored just for you.</p>
+          <a href="booking.html"><button class="promo__btn">Get Started</button></a>
+        </div>
+      </section>
+<!-- ===Floating Book Now Button =================-->
+<a href="booking.html" id="bookNowBtn">Book Now</a>
+<script>
+  const bookNowBtn = document.getElementById("bookNowBtn");
+
+  function toggleButton() {
+    // Show with fade + slide + pulse
+    bookNowBtn.classList.add("show");
+
+    // Stop pulse after 5s
+    setTimeout(() => {
+      bookNowBtn.style.animation = "none";
+    }, 5000);
+
+    // Keep visible for 30s
+    setTimeout(() => {
+      // Hide with fade + slide
+      bookNowBtn.classList.remove("show");
+
+      // Reset pulse for next cycle
+      bookNowBtn.style.animation = "none";
+
+      // Restart cycle after 10s hidden
+      setTimeout(toggleButton, 10000);
+    }, 30000);
+  }
+
+  // Start cycle on load
+  window.onload = () => {
+    toggleButton();
+  };
+</script>
+
+<!--===================
+       CHATBOT
+===================-->
+<!-- Chatbot Button -->
+<div id="chat-btn"><i class="fa-solid fa-message"></i></div>
+
+<!-- Chatbot Window -->
+<div id="chat-window">
+  <div id="chat-header">Chatbot</div>
+  <div id="chatbox"></div>
+  <div id="chat-input-area">
+    <input id="userInput" type="text" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+
+<script>
+const btn = document.getElementById("chat-btn");
+const windowBox = document.getElementById("chat-window");
+
+btn.onclick = () => {
+  windowBox.style.display = windowBox.style.display === "flex" ? "none" : "flex";
+};
+
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let message = input.value.trim();
+  if (!message) return;
+
+  let chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div><b>You:</b> ${message}</div>`;
+
+  // Simple chatbot logic
+  let reply = "🤖 I’m not sure I understand. Can you rephrase?";
+  if (message.toLowerCase().includes("hello")) reply = "Hi 👋 How can I help you?";
+  if (message.toLowerCase().includes("price")) reply = "Our prices start from $99.";
+  if (message.toLowerCase().includes("contact")) reply = "You can email us at support@example.com.";
+
+  chatbox.innerHTML += `<div><b>Bot:</b> ${reply}</div>`;
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  input.value = "";
+}
+</script>
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/256709710902" 
+   class="whatsapp-float" 
+   target="_blank">
+   <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// Get the button
+let backToTop = document.getElementById("backToTop");
+
+// Show button after scrolling down 200px
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+};
+
+// Scroll smoothly to top
+backToTop.onclick = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+
+ 
+
+      <!--====================
+               FOOTER
+       ====================-->
+
+       <footer class="footer" id="footer" style="background-image: url(assets/images/footer-bg.png);">
+
+        <div class="footer__header">
+          <div class="footer__logo">
+            <img src="assets/images/logo1.png" alt="">
+          </div>
+          <div class="social__icons">
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="#"><i class="ri-linkedin-fill"></i></a>
+            <a href="#"><i class="ri-instagram-line"></i></a>
+          </div>
+        </div>
+
+
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4 class="footer__col-head">Top Safaris</h4>
+            <ul>
+              <a href="tours/tours.html"><li>Wildlife Safaris</li></a>
+              <a href="tours/tours.html"><li>Kenya Safaris</li></a>
+              <a href="tours/tours.html"><li>Tanzania Safaris</li></a>
+              <a href="tours/tours.html"><li>East Africa Safaris</li></a>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h4 class="footer__col-head">Destinations</h4>
+            <ul>
+              <a href="destination/destination.html"><li>Uganda</li></a>
+              <a href="destination/destination.html"><li>Kenya</li></a>
+              <a href="destination/destination.html"><li>Tanzania</li></a>
+              <a href="destination/destination.html"><li>Rwanda</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">National Parks</h4>
+            <ul>
+              <a href="tours/tours.html#np"><li>Bwindi Forest NP</li></a>
+              <a href="tours/tours.html#np"><li>Murchison Fall NP</li></a>
+              <a href="tours/tours.html#np"><li>Queen Elizabeth NP</li></a>
+              <a href="tours/tours.html#np"><li>Mgahnga Gorrilla NP</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Site Links</h4>
+            <ul>
+              <a href="../about.html"><li>About Us</li></a>
+              <a href="#"><li>Bookings T&Cs</li></a>
+              <a href="../contact.html"><li>Contact Us</li></a>
+              <a href="#"><li>Privacy Policy</li></a>
+              <a href="#"><li>Sitemap</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Contact</h4>
+            <div class="contact__info">
+              <p>Sebagala Taxi stage, Bukoto Kisasi Rd.<br>Kampala. Uganda</p>
+              <p><i class="ri-phone-line"></i>+256 753 868152</p>
+              <p><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="footer__col newsletter__box">
+            <h4 class="footer__col-head">Signup for our latest news & articles</h4>
+            <form>
+              <input type="email" placeholder="Email address" required>
+              <button type="submit"><i class="ri-arrow-right-line"></i></button>
+            </form>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" required>
+                I agree to the privacy policy
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          © 2025 Copyright by Duya Discoveries. All Rights Reserved
+        </div>
+       </footer>
+      
+<!--===========Schema Seo==========--> 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Duya Discoveries",
+  "description": "Uganda-based tours & travel agency: safaris, gorilla trekking, cultural tours, transfers, and hotel bookings.",
+  "telephone": "+256700000000",
+  "email": "info@duyadiscoveries.com",
+  "areaServed": ["UG", "KE", "TZ", "RW"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "UG",
+    "addressLocality": "Kampala"
+  },
+  "sameAs": [
+    "https://facebook.com/yourpage",
+    "https://instagram.com/yourpage"
+  ],
+  "offers": [
+    {
+      "@type": "TouristTrip",
+      "name": "Uganda Wildlife Safari",
+      "description": "Experience game drives in Murchison Falls, Queen Elizabeth, and Kidepo Valley National Parks.",
+      "touristType": "Wildlife Enthusiasts",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1200",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/safaris"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Gorilla Trekking Adventure",
+      "description": "A 3-day trek to Bwindi Impenetrable Forest for unforgettable gorilla encounters.",
+      "touristType": "Adventure Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1500",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/gorilla-trekking"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Cultural & Community Experience",
+      "description": "Engage with Ugandan communities, traditions, and local cuisine.",
+      "touristType": "Cultural Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "800",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/cultural-tours"
+      }
+    }
+  ]
+}
+</script>
+ 
+
+      <!--=============== SCROLLREVEAL ===============--> 
+      <script src="https://unpkg.com/scrollreveal"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/script.js"></script>
+ 
+ 
+   </body>
+</html>
