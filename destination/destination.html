@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+      
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="../assets/css/style.css">
+      <link rel="stylesheet" href="../assets/css/responsive.css">
+      <link rel="stylesheet" href="../assets/css/base.css">
+
+
+      <!--=============== TITLE ===============-->
+      <title>DUYA DISCOVERIES</title>
+
+      <!--=============== CHATBOT ==============-->
+      <style>
+        #chat-btn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #25d366;
+          color: white;
+          font-size: 24px;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          z-index: 1000;
+        }
+        #chat-window {
+          position: fixed;
+          bottom: 90px;
+          right: 20px;
+          width: 300px;
+          height: 400px;
+          border-radius: 12px;
+          border: 1px solid #ccc;
+          background: white;
+          display: none;
+          flex-direction: column;
+          box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+          overflow: hidden;
+          z-index: 1000;
+        }
+        #chat-header {
+          background: #25d366;
+          color: white;
+          padding: 10px;
+          font-weight: bold;
+          text-align: center;
+        }
+        #chatbox {
+          flex: 1;
+          padding: 10px;
+          overflow-y: auto;
+          font-size: 14px;
+        }
+        #chat-input-area {
+          display: flex;
+          border-top: 1px solid #ddd;
+        }
+        #userInput {
+          flex: 1;
+          padding: 10px;
+          border: none;
+        }
+        #chat-input-area button {
+          background: #25d366;
+          border: none;
+          color: white;
+          padding: 10px 15px;
+          cursor: pointer;
+        }
+ /* WhatsApp button (left, lower) */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;   /* Lower position */
+  left: 20px;     /* On the left side */
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+/* Back to Top button (left, higher) */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 90px;   /* Higher than WhatsApp */
+  left: 20px;     /* On the left side */
+  z-index: 100;
+  border: none;
+  outline: none;
+  background-color: #25d366;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+#backToTop:hover {
+  background-color: #128c7e;
+}
+.banner {
+  overflow: hidden;
+}
+
+.banner__wrapper {
+  width: max-content;
+  display: flex;
+  align-items: center;
+
+  animation: scroll-left 45s linear infinite;
+}
+
+.banner__wrapper img {
+  max-width: 300px;
+}
+
+@keyframes scroll-left {
+  to {
+    transform: translateX(calc(-50%));
+  }
+}
+.blog {
+  background-color: var(--extra-light);
+}
+
+.blog__grid {
+  margin-block: 4rem 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.blog__card {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.blog__card:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.blog__card img {
+  border-radius: 0.5rem;
+}
+
+.blog__content {
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.blog__content h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.75rem;
+}
+
+.blog__content .btn {
+  padding: 0.5rem 1rem;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 1px solid var(--primary-color);
+}
+
+.blog__card .btn:hover {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+.blog__btn {
+  display: flex;
+  justify-content: center;
+}
+/* carousel */
+.carousel{
+    height: 100vh;
+    margin-top: -50px;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+.carousel .list .item{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.carousel .list .item .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.carousel .list .item .title,
+.carousel .list .item .topic{
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.carousel .list .item .topic{
+    color: #f1683a;
+}
+.carousel .list .item .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .buttons button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .list .item .buttons button:nth-child(2){
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #eee;
+}
+/* thumbail */
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbnail .item .content{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: 500;
+}
+.thumbnail .item .content .description{
+    font-weight: 300;
+}
+/* arrows */
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    z-index: 100;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+/* animation */
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+
+/* animation text in first item */
+
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons
+{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.carousel .list .item:nth-child(1) .content .title{
+    animation-delay: 1.2s!important;
+}
+.carousel .list .item:nth-child(1) .content .topic{
+    animation-delay: 1.4s!important;
+}
+.carousel .list .item:nth-child(1) .content .des{
+    animation-delay: 1.6s!important;
+}
+.carousel .list .item:nth-child(1) .content .buttons{
+    animation-delay: 1.8s!important;
+}
+/* create animation when next click */
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage .5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1){
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.prev .list .item img{
+    z-index: 100;
+}
+@keyframes showThumbnail{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+.carousel.next .thumbnail{
+    animation: effectNext .5s linear 1 forwards;
+}
+
+@keyframes effectNext{
+    from{
+        transform: translateX(150px);
+    }
+}
+
+/* running time */
+
+.carousel .time{
+    position: absolute;
+    z-index: 1000;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time{
+    animation: runningTime 3s linear 1 forwards;
+}
+@keyframes runningTime{
+    from{ width: 100%}
+    to{width: 0}
+}
+
+
+/* prev click */
+
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+
+.carousel.prev .list .item:nth-child(2) img{
+    animation: outFrame 0.5s linear 1 forwards;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@keyframes outFrame{
+    to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+    }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1){
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) .content .author,
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .topic,
+.carousel.prev .list .item:nth-child(2) .content .des,
+.carousel.prev .list .item:nth-child(2) .content .buttons
+{
+    animation: contentOut 1.5s linear 1 forwards!important;
+}
+
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 30px;
+    }
+}
+ #bookNowBtn {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translate(150%, -50%); /* start offscreen to the right */
+    background: #18a057;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    opacity: 0;               
+    pointer-events: none;     
+    transition: transform 0.8s ease, opacity 0.8s ease; /* smooth fade + slide */
+  }
+
+  #bookNowBtn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(0, -50%); /* slide into view */
+    animation: pulse 1.5s infinite;
+  }
+
+  #bookNowBtn:hover {
+    background: #0b3d2e;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0%   { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0.6); }
+    70%  { transform: translate(0, -50%) scale(1.1); box-shadow: 0 0 0 15px rgba(24,160,87,0); }
+    100% { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0); }
+  }
+
+  /* 📱 Mobile adjustments */
+  @media (max-width: 768px) {
+    #bookNowBtn {
+      top: 70%;            /* move lower */
+      padding: 10px 18px;  /* slightly smaller */
+      font-size: 14px;
+    }
+
+    #bookNowBtn.show {
+      transform: translate(0, -50%); /* still slide in properly */
+    }
+  }
+  .destinations {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.destinations::before {
+  content: "";
+  background: url('../assets/images/discount.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+.destinations h2 {
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+.destinations .subtitle {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 35px;
+  color: #050000;
+}
+
+.destination-card {
+  background: rgba(0,0,0,0.65);
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.destination-card:hover {
+  transform: translateY(-3px);
+}
+
+.destination-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(90deg, #14ff72cb, #0f8a4c);
+  cursor: pointer;
+}
+
+.destination-header h3 {
+  flex: 1;
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+.destination-header .thumb {
+  width: 60px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.readmore-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.readmore-btn.rotate {
+  transform: rotate(180deg);
+}
+
+.destination-content {
+  display: none;
+  padding: 15px 20px;
+  background: rgba(255,255,255,0.05);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.destination-content p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+
+
+
+  </head>
+  <body>
+
+
+      <!--==================== 
+               HEADER
+       ====================-->
+    
+    <header id="header" class="header">
+      <div class="header__wrapper">
+        <!-- Logo -->
+        <div class="header__logo">
+          <img src="../assets/images/logo1.png" alt="" class="header__logo-img">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="header__right">
+
+          <!-- Top Bar -->
+          <div class="top__bar">
+            <div class="top__bar-left">
+              <span><i class="ri-map-pin-line"></i>Bukoto Kisasi Rd, Kampala</span>
+              <span><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</span>
+            </div>
+
+            <div class="top__bar-right">
+              <div class="top__bar-icons">
+                <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Navbar -->
+          <nav class="main__nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="index.html" class="nav__link">Home</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="../tours/tours.html" class="nav__link">Tours<i class="ri-arrow-down-s-line"></i></a>
+                <ul class="nav__dropdown">
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#gt" class="nav__dropdown-link">Gorrilla Trekking</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#ft" class="nav__dropdown-link">Farm Tours</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#np" class="nav__dropdown-link">National Parks</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav__item">
+                <a href="destination/destination.html" class="nav__link">Destination</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="../about.html" class="nav__link">About Us</a>
+              </li>
+              <li class="nav__item">
+                <a href="../contact.html" class="nav__link">Contacts</a>
+              </li>
+            </ul>
+
+
+            <div class="right-content">
+              <div class="phone">
+                <i class="ri-phone-fill"></i>
+                <div class="phone__text">
+                  <span>Call Anytime</span>
+                  <strong class="phone__number">+256 753 868152</strong>
+                </div>
+              </div>
+              <a href="../booking.html"><button class="btn">Start Booking</button></a>
+            </div>
+
+            <div class="menu-icon" id="menu-icon"><i class="ri-menu-3-fill"></i></div>
+          </nav>
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
+       <div class="sidebar" id="sidebar">
+        <div class="slidbar__header">
+          <div class="sidebar__logo">
+            <img src="../assets/images/logo2.png" alt="" class="sidebar__logo-img">
+          </div>
+          <div class="close-icon" id="close-icon"><i class="ri-close-fill"></i></div>
+        </div>
+
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="../index.html" class="sidebar__link">Home</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../tours/tours.html" class="sidebar__link">Tours<i class="ri-arrow-right-s-line"></i></a>
+            <ul class="sidebar__dropdown">
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#gt" class="sidebar__dropdown-link">Gorrilla Trekking</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#ft" class="sidebar__dropdown-link">Farm Tours</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#np" class="sidebar__dropdown-link">National Parks</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="destination/destination.html" class="sidebar__link">Destination</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../about.html" class="sidebar__link">About Us</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../contact.html" class="sidebar__link">Contact</a>
+          </li>
+        </ul>
+        
+
+        <div class="sidebar__socials">
+          <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+        </div>
+       </div>
+    </header>
+  <!--==========================
+  ==============================
+  ===========================-->
+  <!-- carousel -->
+    <div class="carousel">
+        <!-- list item -->
+        <div class="list">
+            <div class="item">
+                <img src="../assets/images/zzbr.jpg">
+                <div class="content">
+                    <div class="author">ZZBR</div>
+                    <div class="title">Spice Island Paradise</div>
+                    <div class="topic">ZANZIBAR</div>
+                    <div class="des">
+                      Zanzibar invites you to slow down and savor life. 
+                      Its powdery beaches, spice plantations, and centuries-old Stone Town make it a haven for relaxation and discovery.
+                    </div> 
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/rwnda1.jpeg">
+                <div class="content">
+                    <div class="author">RW</div>
+                    <div class="title">Land of a Thousand Hills</div>
+                    <div class="topic">RWANDA</div>
+                    <div class="des">
+                      Rwanda is small but mighty — offering gorilla trekking, breathtaking scenery, and a story of resilience and growth.
+                      From misty volcanoes to shimmering lakes, Rwanda is a gem for eco-tourism, culture, and warm hospitality.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/nairok.jpeg">
+                <div class="content">
+                    <div class="author">KE</div>
+                    <div class="title">Classic Safari Country</div>
+                    <div class="topic">KENYA</div>
+                    <div class="des">
+                      Kenya is where safari began — home of the Big Five, world-famous reserves, and the timeless beauty of the Great Rift Valley.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/birdu.jpeg">
+                <div class="content">
+                    <div class="author">UG</div>
+                    <div class="title">The Pearl of Africa</div>
+                    <div class="topic">UGANDA</div>
+                    <div class="des">
+                      Uganda is where the African wilderness meets vibrant culture. From trekking rare mountain gorillas in Bwindi to cruising the Nile at Murchison Falls, every moment is an adventure.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/mtn1.jpeg">
+                <div class="content">
+                    <div class="author">TZ</div>
+                    <div class="title">Land of Kilimanjaro & Serengeti</div>
+                    <div class="topic">TANZANIA</div>
+                    <div class="des">
+                      Tanzania is a safari dream — where lions stalk the Serengeti, elephants roam beneath Mount Kilimanjaro, and endless plains meet the Indian Ocean.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- list thumnail -->
+        <div class="thumbnail">
+            <div class="item">
+                <img src="../assets/images/tanzania.jpg">
+                <div class="content">
+                    <div class="title">
+                        Zanzibar
+                    </div>
+                    <div class="description">
+                        Relax on pristine beaches, explore Stone Town, and savor spice-scented breezes.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/gtr1.jpeg">
+                <div class="content">
+                    <div class="title">
+                        Rwanda
+                    </div>
+                    <div class="description">
+                       Trek mountain gorillas, cruise Lake Kivu, and discover Rwanda’s green rolling hills.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/saf1.jpeg">
+                <div class="content">
+                    <div class="title">
+                        Kenya
+                    </div>
+                    <div class="description">
+                        Experience iconic safaris, the Big Five, and the culture of the Maasai.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/memorie_img-3.webp">
+                <div class="content">
+                    <div class="title">
+                        Uganda
+                    </div>
+                    <div class="description">
+                        Home of gorillas, mighty rivers, and endless adventure in the heart of Africa.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/know-img.jpg">
+                <div class="content">
+                    <div class="title">
+                        Tanzania
+                    </div>
+                    <div class="description">
+                        Witness the Great Migration, explore vast plains, and stand before Africa’s highest peak.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- next prev -->
+
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <!-- time running -->
+        <div class="time"></div>
+    </div>
+    <script src="swipe.js"></script>
+
+
+    <!-- Destinations Section -->
+<section class="destinations">
+  <h2>Our Destinations</h2>
+  <p class="subtitle">Discover East Africa with Duya Discoveries</p>
+
+  <!-- Uganda -->
+  <div class="destination-card">
+    <div class="destination-header">
+      <img src="../assets/images/wtf5.jpeg" alt="Uganda" class="thumb">
+      <h3>🇺🇬 Uganda – The Pearl of Africa</h3>
+      <button class="readmore-btn">Read More ▾</button>
+    </div>
+    <div class="destination-content">
+      <p>
+        Uganda is home to incredible biodiversity, from lush jungles to vast savannahs. 
+        <strong>Highlights:</strong> Gorilla & chimpanzee trekking in Bwindi and Kibale, 
+        wildlife safaris in Murchison Falls and Queen Elizabeth National Park, cultural 
+        experiences, and adventure sports like white-water rafting in Jinja.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tanzania -->
+  <div class="destination-card">
+    <div class="destination-header">
+      <img src="../assets/images/safari1.jpeg" alt="Tanzania" class="thumb">
+      <h3>🇹🇿 Tanzania – Land of Kilimanjaro & Serengeti</h3>
+      <button class="readmore-btn">Read More ▾</button>
+    </div>
+    <div class="destination-content">
+      <p>
+        Tanzania is Africa’s safari capital, offering breathtaking landscapes and wildlife spectacles. 
+        <strong>Highlights:</strong> The Great Migration in Serengeti, Ngorongoro Crater, 
+        Mount Kilimanjaro, and Zanzibar’s island charm.
+      </p>
+    </div>
+  </div>
+
+  <!-- Kenya -->
+  <div class="destination-card">
+    <div class="destination-header">
+      <img src="../assets/images/saf3.jpeg" alt="Kenya" class="thumb">
+      <h3>🇰🇪 Kenya – Classic Safari Country</h3>
+      <button class="readmore-btn">Read More ▾</button>
+    </div>
+    <div class="destination-content">
+      <p>
+        Kenya combines thrilling safaris with rich traditions and coastal escapes. 
+        <strong>Highlights:</strong> Big Five safaris in Masai Mara, Amboseli with views of Kilimanjaro, 
+        Tsavo National Park, and authentic Maasai cultural experiences.
+      </p>
+    </div>
+  </div>
+
+  <!-- Zanzibar -->
+  <div class="destination-card">
+    <div class="destination-header">
+      <img src="../assets/images/zanzibar1.jpeg" alt="Zanzibar" class="thumb">
+      <h3>🏝 Zanzibar – Spice Island Paradise</h3>
+      <button class="readmore-btn">Read More ▾</button>
+    </div>
+    <div class="destination-content">
+      <p>
+        Zanzibar is a romantic and cultural escape surrounded by turquoise waters. 
+        <strong>Highlights:</strong> White sandy beaches, Stone Town (a UNESCO site), spice plantation tours, 
+        and unforgettable sunsets.
+      </p>
+    </div>
+  </div>
+
+  <!-- Rwanda -->
+  <div class="destination-card">
+    <div class="destination-header">
+      <img src="../assets/images/rwnda.jpeg" alt="Rwanda" class="thumb">
+      <h3>🇷🇼 Rwanda – Land of a Thousand Hills</h3>
+      <button class="readmore-btn">Read More ▾</button>
+    </div>
+    <div class="destination-content">
+      <p>
+        Rwanda offers stunning scenery and rich cultural heritage in a safe, welcoming environment. 
+        <strong>Highlights:</strong> Gorilla trekking in Volcanoes National Park, Lake Kivu, 
+        and Kigali’s vibrant culture and history.
+      </p>
+    </div>
+  </div>
+</section>
+<script>
+document.querySelectorAll('.destination-card').forEach(card => {
+  const header = card.querySelector('.destination-header');
+  const btn = card.querySelector('.readmore-btn');
+  const content = card.querySelector('.destination-content');
+
+  header.addEventListener('click', () => {
+    const isOpen = content.style.display === 'block';
+
+    // Close all cards
+    document.querySelectorAll('.destination-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.readmore-btn').forEach(b => b.classList.remove('rotate'));
+
+    // Open current one if it was closed
+    if (!isOpen) {
+      content.style.display = 'block';
+      btn.classList.add('rotate');
+    }
+  });
+});
+</script>
+
+    <!--=======================
+           BLOG SECTION========
+    =========================-->
+    <section class="blog">
+      <div class="section__container blog__container">
+        <h3 class="section__subheader">Latest News &amp; Blogs</h3>
+        <h2 class="section__header">Our Latest News &amp; Blogs</h2>
+        <div class="blog__grid">
+          <div class="blog__card" data-sr-id="18" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: 0.3s, opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);">
+            <img src="../assets/images/blog-1.jpg" alt="blog">
+            <div class="blog__content">
+              <h4>Top 10 Must-Visit Destinations for Your Next Adventure</h4>
+              <button class="btn">
+                Read More
+                <span><i class="ri-arrow-right-long-line"></i></span>
+              </button>
+            </div>
+          </div>
+          <div class="blog__card" data-sr-id="19" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: 0.3s, opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);">
+            <img src="../assets/images/blog-2.jpg" alt="blog">
+            <div class="blog__content">
+              <h4>Travel Smart: Essential Tips for Stress-Free Vacations</h4>
+              <button class="btn">
+                Read More
+                <span><i class="ri-arrow-right-long-line"></i></span>
+              </button>
+            </div>
+          </div>
+          <div class="blog__card" data-sr-id="20" style="visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transition: 0.3s, opacity 1s cubic-bezier(0.5, 0, 0, 1), transform 1s cubic-bezier(0.5, 0, 0, 1);">
+            <img src="../assets/images/blog-3.jpg" alt="blog">
+            <div class="blog__content">
+              <h4>
+                Hidden Gems: Discover Offbeat Locations for Unique Experience
+              </h4>
+              <button class="btn">
+                Read More
+                <span><i class="ri-arrow-right-long-line"></i></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="blog__btn">
+          <button class="btn">
+            Show All
+            <span><i class="ri-arrow-right-long-line"></i></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!--========================
+            BANNER SECTION
+     =========================-->
+    <section class="banner">
+      <div class="banner__wrapper">
+        <img src="../assets/images/banner-1.jpg" alt="banner">
+        <img src="../assets/images/banner-2.jpg" alt="banner">
+        <img src="../assets/images/banner-3.jpg" alt="banner">
+        <img src="../assets/images/banner-4.jpg" alt="banner">
+        <img src="../assets/images/banner-5.jpg" alt="banner">
+        <img src="../assets/images/banner-6.jpg" alt="banner">
+        <img src="../assets/images/banner-7.jpg" alt="banner">
+        <img src="../assets/images/banner-8.jpg" alt="banner">
+        <img src="../assets/images/banner-1.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-2.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-3.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-4.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-5.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-6.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-7.jpg" alt="banner" aria-hidden="true">
+        <img src="../assets/images/banner-8.jpg" alt="banner" aria-hidden="true">
+      </div>
+    </section>
+      <!--====================
+           Promo Section
+      =====================-->
+
+      <section class="promo section" id="promo" style="background-image: url(../assets/images/gray-bg.png);">
+        <div class="promo__text">
+          <h2 class="promo__title heading"></h2>
+          <p class="promo__desc description">Explore the beauty of the world with special travel offers tailored just for you.</p>
+          <a href="../booking.html"><button class="promo__btn">Get Started</button></a>
+        </div>
+      </section>
+
+<a href="booking.html" id="bookNowBtn">Book Now</a>
+<script>
+  const bookNowBtn = document.getElementById("bookNowBtn");
+
+  function toggleButton() {
+    // Show with fade + slide + pulse
+    bookNowBtn.classList.add("show");
+
+    // Stop pulse after 5s
+    setTimeout(() => {
+      bookNowBtn.style.animation = "none";
+    }, 5000);
+
+    // Keep visible for 30s
+    setTimeout(() => {
+      // Hide with fade + slide
+      bookNowBtn.classList.remove("show");
+
+      // Reset pulse for next cycle
+      bookNowBtn.style.animation = "none";
+
+      // Restart cycle after 10s hidden
+      setTimeout(toggleButton, 10000);
+    }, 30000);
+  }
+
+  // Start cycle on load
+  window.onload = () => {
+    toggleButton();
+  };
+</script>
+<!--===================
+       CHATBOT
+===================-->
+<!-- Chatbot Button -->
+<div id="chat-btn"><i class="fa-solid fa-message"></i></div>
+
+<!-- Chatbot Window -->
+<div id="chat-window">
+  <div id="chat-header">Chatbot</div>
+  <div id="chatbox"></div>
+  <div id="chat-input-area">
+    <input id="userInput" type="text" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+
+<script>
+const btn = document.getElementById("chat-btn");
+const windowBox = document.getElementById("chat-window");
+
+btn.onclick = () => {
+  windowBox.style.display = windowBox.style.display === "flex" ? "none" : "flex";
+};
+
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let message = input.value.trim();
+  if (!message) return;
+
+  let chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div><b>You:</b> ${message}</div>`;
+
+  // Simple chatbot logic
+  let reply = "🤖 I’m not sure I understand. Can you rephrase?";
+  if (message.toLowerCase().includes("hello")) reply = "Hi 👋 How can I help you?";
+  if (message.toLowerCase().includes("price")) reply = "Our prices start from $99.";
+  if (message.toLowerCase().includes("contact")) reply = "You can email us at support@example.com.";
+
+  chatbox.innerHTML += `<div><b>Bot:</b> ${reply}</div>`;
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  input.value = "";
+}
+</script>
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/256709710902" 
+   class="whatsapp-float" 
+   target="_blank">
+   <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// Get the button
+let backToTop = document.getElementById("backToTop");
+
+// Show button after scrolling down 200px
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+};
+
+// Scroll smoothly to top
+backToTop.onclick = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+
+ 
+
+      <!--====================
+               FOOTER
+       ====================-->
+
+       <footer class="footer" id="footer" style="background-image: url(../assets/images/footer-bg.png);">
+
+        <div class="footer__header">
+          <div class="footer__logo">
+            <img src="../assets/images/logo1.png" alt="">
+          </div>
+          <div class="social__icons">
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="#"><i class="ri-linkedin-fill"></i></a>
+            <a href="#"><i class="ri-instagram-line"></i></a>
+          </div>
+        </div>
+
+
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4 class="footer__col-head">Top Safaris</h4>
+            <ul>
+              <a href="../tours/tours.html"><li>Wildlife Safaris</li></a>
+              <a href="../tours/tours.html"><li>Kenya Safaris</li></a>
+              <a href="../tours/tours.html"><li>Tanzania Safaris</li></a>
+              <a href="../tours/tours.html"><li>East Africa Safaris</li></a>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h4 class="footer__col-head">Destinations</h4>
+            <ul>
+              <a href="destination.html"><li>Uganda</li></a>
+              <a href="destination.html"><li>Kenya</li></a>
+              <a href="destination.html"><li>Tanzania</li></a>
+              <a href="destination.html"><li>Rwanda</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">National Parks</h4>
+            <ul>
+              <a href="../tours/tours.html#np"><li>Bwindi Forest NP</li></a>
+              <a href="../tours/tours.html#np"><li>Murchison Fall NP</li></a>
+              <a href="../tours/tours.html#np"><li>Queen Elizabeth NP</li></a>
+              <a href="../tours/tours.html#np"><li>Mgahnga Gorrilla NP</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Site Links</h4>
+            <ul>
+              <a href="../about.html"><li>About Us</li></a>
+              <a href="#"><li>Bookings T&Cs</li></a>
+              <a href="../contact.html"><li>Contact Us</li></a>
+              <a href="#"><li>Privacy Policy</li></a>
+              <a href="#"><li>Sitemap</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Contact</h4>
+            <div class="contact__info">
+              <p>Sebagala Taxi stage, Bukoto Kisasi Rd.<br>Kampala. Uganda</p>
+              <p><i class="ri-phone-line"></i>+256 753 868152</p>
+              <p><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="footer__col newsletter__box">
+            <h4 class="footer__col-head">Signup for our latest news & articles</h4>
+            <form>
+              <input type="email" placeholder="Email address" required>
+              <button type="submit"><i class="ri-arrow-right-line"></i></button>
+            </form>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" required>
+                I agree to the privacy policy
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          © 2025 Copyright by Duya Discoveries. All Rights Reserved
+        </div>
+       </footer>
+<!--===========SCHEMA SEO OPTIM========-->      
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Duya Discoveries",
+  "description": "Uganda-based tours & travel agency: safaris, gorilla trekking, cultural tours, transfers, and hotel bookings.",
+  "telephone": "+256700000000",
+  "email": "info@duyadiscoveries.com",
+  "areaServed": ["UG", "KE", "TZ", "RW"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "UG",
+    "addressLocality": "Kampala"
+  },
+  "sameAs": [
+    "https://facebook.com/yourpage",
+    "https://instagram.com/yourpage"
+  ],
+  "offers": [
+    {
+      "@type": "TouristTrip",
+      "name": "Uganda Wildlife Safari",
+      "description": "Experience game drives in Murchison Falls, Queen Elizabeth, and Kidepo Valley National Parks.",
+      "touristType": "Wildlife Enthusiasts",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1200",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/tours"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Gorilla Trekking Adventure",
+      "description": "A 3-day trek to Bwindi Impenetrable Forest for unforgettable gorilla encounters.",
+      "touristType": "Adventure Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1500",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/gorilla-trekking"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Cultural & Community Experience",
+      "description": "Engage with Ugandan communities, traditions, and local cuisine.",
+      "touristType": "Cultural Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "800",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/cultural-tours"
+      }
+    }
+  ]
+}
+</script>
+ 
+ 
+
+      <!--=============== SCROLLREVEAL ===============--> 
+      <script src="https://unpkg.com/scrollreveal"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="../assets/js/script.js"></script>
+ 
+ 
+   </body>
+</html>
