@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+      
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="../assets/css/style.css">
+      <link rel="stylesheet" href="../assets/css/responsive.css">
+      <link rel="stylesheet" href="../assets/css/base.css">
+
+
+      <!--=============== TITLE ===============-->
+      <title>DUYA DISCOVERIES</title>
+
+      <!--=============== CHATBOT ==============-->
+      <style>
+        #chat-btn {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: #25d366;
+          color: white;
+          font-size: 24px;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+          z-index: 1000;
+        }
+        #chat-window {
+          position: fixed;
+          bottom: 90px;
+          right: 20px;
+          width: 300px;
+          height: 400px;
+          border-radius: 12px;
+          border: 1px solid #ccc;
+          background: white;
+          display: none;
+          flex-direction: column;
+          box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+          overflow: hidden;
+          z-index: 1000;
+        }
+        #chat-header {
+          background: #25d366;
+          color: white;
+          padding: 10px;
+          font-weight: bold;
+          text-align: center;
+        }
+        #chatbox {
+          flex: 1;
+          padding: 10px;
+          overflow-y: auto;
+          font-size: 14px;
+        }
+        #chat-input-area {
+          display: flex;
+          border-top: 1px solid #ddd;
+        }
+        #userInput {
+          flex: 1;
+          padding: 10px;
+          border: none;
+        }
+        #chat-input-area button {
+          background: #25d366;
+          border: none;
+          color: white;
+          padding: 10px 15px;
+          cursor: pointer;
+        }
+ /* WhatsApp button (left, lower) */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;   /* Lower position */
+  left: 20px;     /* On the left side */
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+/* Back to Top button (left, higher) */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 90px;   /* Higher than WhatsApp */
+  left: 20px;     /* On the left side */
+  z-index: 100;
+  border: none;
+  outline: none;
+  background-color: #25d366;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+#backToTop:hover {
+  background-color: #128c7e;
+}
+.banner {
+  overflow: hidden;
+}
+
+.banner__wrapper {
+  width: max-content;
+  display: flex;
+  align-items: center;
+
+  animation: scroll-left 45s linear infinite;
+}
+
+.banner__wrapper img {
+  max-width: 300px;
+}
+
+@keyframes scroll-left {
+  to {
+    transform: translateX(calc(-50%));
+  }
+}
+.blog {
+  background-color: var(--extra-light);
+}
+
+.blog__grid {
+  margin-block: 4rem 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.blog__card {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.blog__card:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.blog__card img {
+  border-radius: 0.5rem;
+}
+
+.blog__content {
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.blog__content h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.75rem;
+}
+
+.blog__content .btn {
+  padding: 0.5rem 1rem;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 1px solid var(--primary-color);
+}
+
+.blog__card .btn:hover {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+.blog__btn {
+  display: flex;
+  justify-content: center;
+}
+/* carousel */
+.carousel{
+    height: 100vh;
+    margin-top: -50px;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+.carousel .list .item{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.carousel .list .item .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.carousel .list .item .title,
+.carousel .list .item .topic{
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.carousel .list .item .topic{
+    color: #f1683a;
+}
+.carousel .list .item .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .buttons button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .list .item .buttons button:nth-child(2){
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #eee;
+}
+/* thumbail */
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbnail .item .content{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: 500;
+}
+.thumbnail .item .content .description{
+    font-weight: 300;
+}
+/* arrows */
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    z-index: 100;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+/* animation */
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+
+/* animation text in first item */
+
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons
+{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.carousel .list .item:nth-child(1) .content .title{
+    animation-delay: 1.2s!important;
+}
+.carousel .list .item:nth-child(1) .content .topic{
+    animation-delay: 1.4s!important;
+}
+.carousel .list .item:nth-child(1) .content .des{
+    animation-delay: 1.6s!important;
+}
+.carousel .list .item:nth-child(1) .content .buttons{
+    animation-delay: 1.8s!important;
+}
+/* create animation when next click */
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage .5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1){
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.prev .list .item img{
+    z-index: 100;
+}
+@keyframes showThumbnail{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+.carousel.next .thumbnail{
+    animation: effectNext .5s linear 1 forwards;
+}
+
+@keyframes effectNext{
+    from{
+        transform: translateX(150px);
+    }
+}
+
+/* running time */
+
+.carousel .time{
+    position: absolute;
+    z-index: 1000;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time{
+    animation: runningTime 3s linear 1 forwards;
+}
+@keyframes runningTime{
+    from{ width: 100%}
+    to{width: 0}
+}
+
+
+/* prev click */
+
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+
+.carousel.prev .list .item:nth-child(2) img{
+    animation: outFrame 0.5s linear 1 forwards;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@keyframes outFrame{
+    to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+    }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1){
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) .content .author,
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .topic,
+.carousel.prev .list .item:nth-child(2) .content .des,
+.carousel.prev .list .item:nth-child(2) .content .buttons
+{
+    animation: contentOut 1.5s linear 1 forwards!important;
+}
+
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 30px;
+    }
+}
+ #bookNowBtn {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translate(150%, -50%); /* start offscreen to the right */
+    background: #18a057;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    opacity: 0;               
+    pointer-events: none;     
+    transition: transform 0.8s ease, opacity 0.8s ease; /* smooth fade + slide */
+  }
+
+  #bookNowBtn.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(0, -50%); /* slide into view */
+    animation: pulse 1.5s infinite;
+  }
+
+  #bookNowBtn:hover {
+    background: #0b3d2e;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0%   { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0.6); }
+    70%  { transform: translate(0, -50%) scale(1.1); box-shadow: 0 0 0 15px rgba(24,160,87,0); }
+    100% { transform: translate(0, -50%) scale(1);   box-shadow: 0 0 0 0 rgba(24,160,87,0); }
+  }
+
+  /* 📱 Mobile adjustments */
+  @media (max-width: 768px) {
+    #bookNowBtn {
+      top: 70%;            /* move lower */
+      padding: 10px 18px;  /* slightly smaller */
+      font-size: 14px;
+    }
+
+    #bookNowBtn.show {
+      transform: translate(0, -50%); /* still slide in properly */
+    }
+  }
+  /* FAQ Section Styling */
+.faqs {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.faqs h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #2c3e50;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.faq-question.active {
+  background: #14ff72cb;
+  color: #fff;
+}
+
+.faq-question.active::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  background: #fff;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.itinerary-section {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.itinerary-section h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.itinerary-section  {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+.subtitle {
+  color: #000;
+  font-size: 18px;
+}
+
+.itinerary-card {
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.itinerary-card:hover {
+  transform: translateY(-3px);
+}
+
+.itinerary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #14ff72cb, #0f8a4c);
+}
+
+.itinerary-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.toggle-btn.rotate {
+  transform: rotate(180deg);
+}
+
+.itinerary-content {
+  display: none;
+  padding: 15px 20px;
+  background: rgba(255,255,255,0.05);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.itinerary-content ul {
+  padding-left: 20px;
+}
+
+.itinerary-content li {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.tour-categories {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tour-categories h2 {
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #14ff72cb;
+}
+
+.tour-categories .subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #555;
+}
+
+/* Tabs */
+.category-tabs {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 25px;
+  background-color: #eee;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background-color: #14ff72cb;
+  color: #fff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 14px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  text-align: left;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover .caption {
+  transform: translateY(0);
+}
+.map-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f8f9fa;
+}
+
+.map-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #14ff72cb;
+}
+
+.map-section p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.map-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.trust-badges {
+  text-align: center;
+  padding: 50px 20px;
+  background: #f8f9fa;
+  border-top: 2px solid #eee;
+}
+
+.trust-badges h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #14ff72cb;
+}
+
+.trust-badges .subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.badge-group {
+  flex: 1;
+  min-width: 250px;
+}
+
+.badge-group h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.badge-group img {
+  height: 50px;
+  margin: 10px;
+  filter: grayscale(20%);
+  transition: filter 0.3s;
+}
+
+.badge-group img:hover {
+  filter: grayscale(0);
+}
+
+.secure {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+
+</style>
+
+
+
+  </head>
+  <body>
+
+
+      <!--==================== 
+               HEADER
+       ====================-->
+    
+    <header id="header" class="header">
+      <div class="header__wrapper">
+        <!-- Logo -->
+        <div class="header__logo">
+          <img src="../assets/images/logo1.png" alt="" class="header__logo-img">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="header__right">
+
+          <!-- Top Bar -->
+          <div class="top__bar">
+            <div class="top__bar-left">
+              <span><i class="ri-map-pin-line"></i>Bukoto Kisasi Rd, Kampala</span>
+              <span><i class="ri-mail-line"></i>duyadiscoveries2023@gmail.com</span>
+            </div>
+
+            <div class="top__bar-right">
+              <div class="top__bar-icons">
+                <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Navbar -->
+          <nav class="main__nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="../index.html" class="nav__link">Home</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="tours.html" class="nav__link">Tours<i class="ri-arrow-down-s-line"></i></a>
+                <ul class="nav__dropdown">
+                  <li class="nav__dropdown-item">
+                    <a href="#gt" class="nav__dropdown-link">Gorrilla Trekking</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="#ft" class="nav__dropdown-link">Farm Tours</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="#np" class="nav__dropdown-link">National Parks</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav__item">
+                <a href="../destination/destination.html" class="nav__link">Destination</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="../about.html" class="nav__link">About Us</a>
+              </li>
+              <li class="nav__item">
+                <a href="../contact.html" class="nav__link">Contacts</a>
+              </li>
+            </ul>
+
+
+            <div class="right-content">
+              <div class="phone">
+                <i class="ri-phone-fill"></i>
+                <div class="phone__text">
+                  <span>Call Anytime</span>
+                  <strong class="phone__number">+256 753 868152</strong>
+                </div>
+              </div>
+              <a href="../booking.html"><button class="btn">Start Booking</button></a>
+            </div>
+
+            <div class="menu-icon" id="menu-icon"><i class="ri-menu-3-fill"></i></div>
+          </nav>
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
+       <div class="sidebar" id="sidebar">
+        <div class="slidbar__header">
+          <div class="sidebar__logo">
+            <img src="../assets/images/logo2.png" alt="" class="sidebar__logo-img">
+          </div>
+          <div class="close-icon" id="close-icon"><i class="ri-close-fill"></i></div>
+        </div>
+
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="../index.html" class="sidebar__link">Home</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="ours.html" class="sidebar__link">Tours<i class="ri-arrow-right-s-line"></i></a>
+            <ul class="sidebar__dropdown">
+              <li class="sidebar__dropdown-item">
+                <a href="#gt" class="sidebar__dropdown-link">Gorrilla Trekking</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="#ft" class="sidebar__dropdown-link">Farm Tours</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="#np" class="sidebar__dropdown-link">National Parks</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../destination/destination.html" class="sidebar__link">Destination</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../about.html" class="sidebar__link">About Us</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../contact.html" class="sidebar__link">Contact</a>
+          </li>
+        </ul>
+        
+
+        <div class="sidebar__socials">
+          <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+        </div>
+       </div>
+    </header>
+  <!--==========================
+  ==============================
+  ===========================-->
+  <!-- carousel -->
+    <div class="carousel">
+        <!-- list item -->
+        <div class="list">
+            <div class="item">
+                <img src="../assets/images/saf.jpeg">
+                <div class="content">
+                    <div class="author">National Parks</div>
+                    <div class="title" id="np">Savannah Safaris</div>
+                    <div class="topic">Wildlife</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Classic wildlife drives through Uganda’s vast savannah landscapes such as Murchison Falls, Queen Elizabeth, and Kidepo Valley. Guests encounter lions, elephants, buffalo, giraffes, antelopes, and sometimes elusive leopards.
+                        The open plains, dramatic sunsets, and diverse wildlife make this the ultimate African safari experience.
+                    </div>
+                    <div class="buttons">
+                        <a href="../booking.html"><button>BOOK NOW</button></a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/grrlaa.jpeg">
+                <div class="content">
+                    <div class="author">National Parks</div>
+                    <div class="title" id="gt">Gorilla Trekking</div>
+                    <div class="topic">Primates</div>
+                    <div class="des">
+                      A once-in-a-lifetime adventure into the misty rainforests of Bwindi, Mgahinga, and Kibale. Visitors track endangered mountain gorillas, chimpanzees, and other primates in their natural habitat. Beyond the thrill of encountering these creatures up close, the treks also reveal Uganda’s incredible biodiversity and conservation efforts.
+                    </div>
+                    <div class="buttons">
+                        <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/farm8.jpeg">
+                <div class="content">
+                    <div class="author">Farm Tours</div>
+                    <div class="title" id="ft">Farm & Agri-Tourism Tours</div>
+                    <div class="topic">Farm</div>
+                    <div class="des">
+                        Explore Uganda’s thriving farmlands, including coffee, tea, banana, and vanilla plantations. Guests can learn about organic farming, join in harvest activities, and taste fresh produce. These tours combine education, sustainability, and hands-on cultural experiences.
+                    </div>
+                    <div class="buttons">
+                      <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/hnmn9.jpeg">
+                <div class="content">
+                    <div class="author">FAMILY TRIPS</div>
+                    <div class="title">Honeymoon & Romantic Getaways</div>
+                    <div class="topic">HoneyMoon</div>
+                    <div class="des">
+                      Tailor-made itineraries for couples seeking intimacy and adventure. Options include luxury lodges with private decks overlooking the savannah, serene retreats on Lake Bunyonyi, private gorilla treks, and sunset boat rides. Perfect for newlyweds or couples looking to rekindle romance in breathtaking natural settings.
+                    </div>
+                    <div class="buttons">
+                      <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/flmgo.jpeg">
+                <div class="content">
+                    <div class="author">Fauna</div>
+                    <div class="title">Birding Safaris</div>
+                    <div class="topic">Birds</div>
+                    <div class="des">
+                      Uganda is a birdwatcher’s paradise, with over 1,000 species recorded. From the wetlands of Mabamba (home to the rare shoebill stork) to the forests of Kibale and the savannahs of Queen Elizabeth, birding tours offer endless opportunities. Ideal for ornithologists and nature lovers, these safaris showcase Uganda’s status as a top global birding destination.
+                    </div>
+                    <div class="buttons">
+                      <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/rafting.jpeg">
+                <div class="content">
+                    <div class="author">Nature</div>
+                    <div class="title">Boat & River Cruise</div>
+                    <div class="topic">Rafting</div>
+                    <div class="des">
+                     Water-based safaris along the Nile, Lake Victoria, or the Kazinga Channel. Guests enjoy close-up views of hippos, crocodiles, elephants, and abundant birdlife while gliding peacefully across scenic waters. These cruises provide a relaxing contrast to game drives, offering a different perspective on wildlife and landscapes.
+                    </div>
+                    <div class="buttons">
+                      <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/hotel-3.jpg">
+                <div class="content">
+                    <div class="author">Travel</div>
+                    <div class="title">Lodging</div>
+                    <div class="topic">Accomodation</div>
+                    <div class="des">
+                     Sustainable tours designed to reduce environmental impact while supporting conservation and local communities. Guests stay in eco-lodges, participate in tree-planting or wildlife conservation activities, and directly support grassroots projects. Perfect for conscious travelers who want their journeys to make a positive difference.
+                    </div>
+                    <div class="buttons">
+                      <a href="../booking.html"><button>BOOK NOW</button></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- list thumnail -->
+        <div class="thumbnail">
+            <div class="item">
+                <img src="../assets/images/saf4.jpeg">
+                <div class="content">
+                    <div class="title" id="np">
+                        Savannah
+                    </div>
+                    <div class="description">
+                        Discover Africa’s big game in open plains.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/gtr.jpeg">
+                <div class="content">
+                    <div class="title">
+                      Primates
+                    </div>
+                    <div class="description">
+                        Meet gorillas and primates in lush forests.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/frm.jpeg">
+                <div class="content">
+                    <div class="title">
+                        Farms
+                    </div>
+                    <div class="description">
+                      Explore fertile farms and taste fresh harvests.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/hnymn2.jpeg">
+                <div class="content">
+                    <div class="title">
+                        HoneyMoon
+                    </div>
+                    <div class="description">
+                       Escape to intimate lodges and scenic retreats.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/flmngo.jpeg">
+                <div class="content">
+                    <div class="title">
+                      Birds
+                    </div>
+                    <div class="description">
+                       Spot rare birds in diverse habitats.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/rftg1.jpg">
+                <div class="content">
+                    <div class="title">
+                      Rafting
+                    </div>
+                    <div class="description">
+                       Glide past hippos and elephants on water.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../assets/images/inspiration-3.jpg">
+                <div class="content">
+                    <div class="title">
+                      Accomodation
+                    </div>
+                    <div class="description">
+                       Travel green while supporting people and nature.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- next prev -->
+
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <!-- time running -->
+        <div class="time"></div>
+    </div>
+    <script src="swipe.js"></script>
+
+
+<!--=========TOUR CATEGORIES=========-->
+<!-- Tour Categories with Filter Tabs -->
+<section class="tour-categories">
+
+  <h2>Activities Done</h2>
+  <p class="subtitle">Explore East Africa through our curated experiences</p>
+
+  <!-- Tabs -->
+  <div class="category-tabs">
+    <button class="tab-btn active" data-category="all">All</button>
+    <button class="tab-btn" data-category="safaris">National Park Safaris</button>
+    <button class="tab-btn" data-category="gorilla">Gorilla Trekking</button>
+    <button class="tab-btn" data-category="farm">Farm & Agro Tours</button>
+    <button class="tab-btn" data-category="culture">Cultural Experiences</button>
+    <button class="tab-btn" data-category="honeymoon">Honeymoon & Beach</button>
+  </div>
+
+  <!-- Gallery Items -->
+  <div class="gallery-grid">
+    <!-- National Park Safaris -->
+    <div class="gallery-item" data-category="safaris">
+      <img src="../assets/images/saf3.jpeg" alt="Lions in Queen Elizabeth">
+      <div class="caption">Lion pride – Queen Elizabeth National Park, Uganda</div>
+    </div>
+    <div class="gallery-item" data-category="safaris">
+      <img src="../assets/images/wlf1.jpeg" alt="Serengeti Migration">
+      <div class="caption">The Great Migration – Serengeti, Tanzania</div>
+    </div>
+
+    <!-- Gorilla Trekking -->
+    <div class="gallery-item" data-category="gorilla">
+      <img src="../assets/images/grrlaa.jpeg" alt="Gorillas in Bwindi">
+      <div class="caption">Gentle giants – Bwindi Impenetrable Forest, Uganda</div>
+    </div>
+    <div class="gallery-item" data-category="gorilla">
+      <img src="../assets/images/gtr.jpeg" alt="Rwanda Gorilla Trek">
+      <div class="caption">Close encounter – Volcanoes National Park, Rwanda</div>
+    </div>
+
+    <!-- Farm & Agro Tours -->
+    <div class="gallery-item" data-category="farm">
+      <img src="../assets/images/frm.jpeg" alt="Coffee Tour">
+      <div class="caption">Coffee picking – Uganda</div>
+    </div>
+    <div class="gallery-item" data-category="farm">
+      <img src="../assets/images/fm1.jpeg" alt="Tea Plantation">
+      <div class="caption">Tea plantations – Rwanda</div>
+    </div>
+
+    <!-- Cultural Experiences -->
+    <div class="gallery-item" data-category="culture">
+      <img src="../assets/images/masai.jpg" alt="Masai Dance">
+      <div class="caption">Traditional Maasai dance – Kenya</div>
+    </div>
+    <div class="gallery-item" data-category="culture">
+      <img src="../assets/images/baganda.jpg" alt="Baganda Culture">
+      <div class="caption">Buganda cultural heritage – Uganda</div>
+    </div>
+
+    <!-- Honeymoon & Beach Holidays -->
+    <div class="gallery-item" data-category="honeymoon">
+      <img src="../assets/images/beach5.jpeg" alt="Zanzibar Beach">
+      <div class="caption">Romantic sunset – Zanzibar Island</div>
+    </div>
+    <div class="gallery-item" data-category="honeymoon">
+      <img src="../assets/images/hnmn1.jpeg" alt="Lake Victoria">
+      <div class="caption">Lakeside honeymoon – Lake Victoria</div>
+    </div>
+  </div>
+</section>
+<!-- JS -->
+<script>
+const tabs = document.querySelectorAll('.tab-btn');
+const items = document.querySelectorAll('.gallery-item');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Remove active from all tabs
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    const category = tab.getAttribute('data-category');
+
+    items.forEach(item => {
+      if(category === 'all' || item.getAttribute('data-category') === category) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+
+
+
+<!--========intinerary-======-->
+<!-- Itinerary Preview Section -->
+<section class="itinerary-section">
+  <h2>Itineraries</h2>
+  <p class="subtitle">Preview some of our most popular tours</p>
+
+  <div class="itinerary-card">
+    <div class="itinerary-header">
+      <h3>4-Day Gorilla Trekking Safari</h3>
+      <button class="toggle-btn">View Details ▾</button>
+    </div>
+    <div class="itinerary-content">
+      <ul>
+        <li><strong>Day 1:</strong> Arrival in Kampala, transfer to hotel.</li>
+        <li><strong>Day 2:</strong> Drive to Bwindi, scenic countryside views.</li>
+        <li><strong>Day 3:</strong> Gorilla trekking adventure + cultural experience.</li>
+        <li><strong>Day 4:</strong> Return journey with stopovers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="itinerary-card">
+    <div class="itinerary-header">
+      <h3>5-Day Savannah Wildlife Safari</h3>
+      <button class="toggle-btn">View Details ▾</button>
+    </div>
+    <div class="itinerary-content">
+      <ul>
+        <li><strong>Day 1:</strong> Arrival and city tour in Kampala.</li>
+        <li><strong>Day 2:</strong> Transfer to Queen Elizabeth National Park.</li>
+        <li><strong>Day 3:</strong> Morning game drive, evening boat cruise.</li>
+        <li><strong>Day 4:</strong> Chimpanzee tracking in Kyambura Gorge.</li>
+        <li><strong>Day 5:</strong> Return trip with cultural stopover.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="itinerary-card">
+    <div class="itinerary-header">
+      <h3>3-Day Birding Safari Experience</h3>
+      <button class="toggle-btn">View Details ▾</button>
+    </div>
+    <div class="itinerary-content">
+      <ul>
+        <li><strong>Day 1:</strong> Arrival and birdwatching at Mabamba Swamp.</li>
+        <li><strong>Day 2:</strong> Full-day birding in Lake Mburo National Park.</li>
+        <li><strong>Day 3:</strong> Morning birding walk and departure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- JavaScript for Expand/Collapse -->
+<script>
+document.querySelectorAll('.itinerary-card').forEach(card => {
+  const header = card.querySelector('.itinerary-header');
+  const btn = card.querySelector('.toggle-btn');
+  const content = card.querySelector('.itinerary-content');
+
+  header.addEventListener('click', () => {
+    const isOpen = content.style.display === 'block';
+
+    // Close all other cards
+    document.querySelectorAll('.itinerary-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('rotate'));
+
+    // Toggle current one
+    if (!isOpen) {
+      content.style.display = 'block';
+      btn.classList.add('rotate');
+    }
+  });
+});
+</script>
+
+
+
+
+<!--=======FAQs=======-->
+<section id="faqs" class="faqs">
+  <h2>Frequently Asked Questions</h2>
+  
+  <div class="faq-item">
+    <button class="faq-question">How do I book a tour with Duya Discoveries?</button>
+    <div class="faq-answer">
+      <p>You can book directly through our booking page, 
+        email us at duyadiscoveries@gmail.com, or call our office. Once your details are confirmed, 
+        we’ll send you an invoice and itinerary.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What payment methods are accepted?</button>
+    <div class="faq-answer">
+      <p>We accept bank transfers, mobile money, credit/debit cards, and PayPal. 
+        Payments can be made in both local and foreign currency.
+        <br>Online payments can also be made via <a href="https://store.pesapal.com/duyadiscoveries">PESAPAL</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Can I pay a deposit and the rest later?</button>
+    <div class="faq-answer">
+      <p>Yes, we allow a deposit to confirm your booking, with the balance payable before the tour begins.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">Do I need a visa to travel to Uganda?</button>
+    <div class="faq-answer">
+      <p>Yes, most travelers require a visa. 
+        You can apply online for an eVisa or obtain one upon arrival depending on your nationality.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What should I pack for a safari?</button>
+    <div class="faq-answer">
+      <p>Light clothing, sturdy walking shoes, a hat, sunscreen, insect repellent, 
+        binoculars, and a good camera are essential.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">What kind of vehicles do you use?</button>
+    <div class="faq-answer">
+      <p>We use 4x4 safari vehicles with pop-up roofs, 
+        designed for comfort and wildlife viewing. All are well-maintained and driven by experienced guides.
+      </p>
+    </div>
+  </div>
+</section>
+<script>
+// FAQ Toggle Script (only one open at a time)
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const currentlyActive = document.querySelector('.faq-question.active');
+    if (currentlyActive && currentlyActive !== button) {
+      currentlyActive.classList.remove('active');
+      currentlyActive.nextElementSibling.style.display = 'none';
+    }
+
+    button.classList.toggle('active');
+    const answer = button.nextElementSibling;
+
+    if (button.classList.contains('active')) {
+      answer.style.display = 'block';
+    } else {
+      answer.style.display = 'none';
+    }
+  });
+});
+</script>
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I book a tour with Duya Discoveries?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book directly through our booking page, email us, or call our office. We’ll confirm details and send an invoice and itinerary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What payment methods are accepted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We accept bank transfers, mobile money, credit/debit cards, and PayPal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I pay a deposit and the rest later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can pay a deposit to confirm your booking and clear the balance before your tour begins."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I cancel — is there a refund policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, cancellations are subject to our refund policy depending on how close to departure the cancellation occurs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a visa to travel to Uganda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most travelers require a visa. You can apply online for an eVisa or obtain one upon arrival depending on your nationality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are vaccinations required before joining a tour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yellow fever vaccination is mandatory. We also recommend malaria prophylaxis and other routine vaccinations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I pack for a safari?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pack light clothing, sturdy walking shoes, a hat, sunscreen, insect repellent, binoculars, and a camera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of vehicles do you use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We use 4x4 safari vehicles with pop-up roofs, designed for comfort and wildlife viewing."
+      }
+    }
+  ]
+}
+</script>
+
+
+<a href="booking.html" id="bookNowBtn">Book Now</a>
+<script>
+  const bookNowBtn = document.getElementById("bookNowBtn");
+
+  function toggleButton() {
+    // Show with fade + slide + pulse
+    bookNowBtn.classList.add("show");
+
+    // Stop pulse after 5s
+    setTimeout(() => {
+      bookNowBtn.style.animation = "none";
+    }, 5000);
+
+    // Keep visible for 30s
+    setTimeout(() => {
+      // Hide with fade + slide
+      bookNowBtn.classList.remove("show");
+
+      // Reset pulse for next cycle
+      bookNowBtn.style.animation = "none";
+
+      // Restart cycle after 10s hidden
+      setTimeout(toggleButton, 10000);
+    }, 30000);
+  }
+
+  // Start cycle on load
+  window.onload = () => {
+    toggleButton();
+  };
+</script>
+<!--===================
+       CHATBOT
+===================-->
+<!-- Chatbot Button -->
+<div id="chat-btn"><i class="fa-solid fa-message"></i></div>
+
+<!-- Chatbot Window -->
+<div id="chat-window">
+  <div id="chat-header">Chatbot</div>
+  <div id="chatbox"></div>
+  <div id="chat-input-area">
+    <input id="userInput" type="text" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+
+<script>
+const btn = document.getElementById("chat-btn");
+const windowBox = document.getElementById("chat-window");
+
+btn.onclick = () => {
+  windowBox.style.display = windowBox.style.display === "flex" ? "none" : "flex";
+};
+
+function sendMessage() {
+  let input = document.getElementById("userInput");
+  let message = input.value.trim();
+  if (!message) return;
+
+  let chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div><b>You:</b> ${message}</div>`;
+
+  // Simple chatbot logic
+  let reply = "🤖 I’m not sure I understand. Can you rephrase?";
+  if (message.toLowerCase().includes("hello")) reply = "Hi 👋 How can I help you?";
+  if (message.toLowerCase().includes("price")) reply = "Our prices start from $99.";
+  if (message.toLowerCase().includes("contact")) reply = "You can email us at support@example.com.";
+
+  chatbox.innerHTML += `<div><b>Bot:</b> ${reply}</div>`;
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  input.value = "";
+}
+</script>
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/256709710902" 
+   class="whatsapp-float" 
+   target="_blank">
+   <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// Get the button
+let backToTop = document.getElementById("backToTop");
+
+// Show button after scrolling down 200px
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+};
+
+// Scroll smoothly to top
+backToTop.onclick = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+<!--========MAP==========-->
+<!-- Map Section -->
+<section class="map-section">
+  <h2>Where We Take You</h2>
+  <p>Discover breathtaking destinations across East Africa with Duya Discoveries.</p>
+
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!4v1691507899552!6m8!1m7!1s0x19c57b83934e9f7f:0x5dfdc6f4f3d0e2dd!2m2!1d1.373333!2d32.290275!3f0!4f0!5f0!3m2!1i1024!2i768!4f13.1!5m2!1sen!2sug"
+      width="100%" height="450" style="border:0;" 
+      allowfullscreen="" loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+
+ 
+
+      <!--====================
+               FOOTER
+       ====================-->
+
+       <footer class="footer" id="footer" style="background-image: url(../assets/images/footer-bg.png);">
+
+        <div class="footer__header">
+          <div class="footer__logo">
+            <img src="../assets/images/logo1.png" alt="">
+          </div>
+          <div class="social__icons">
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="#"><i class="ri-linkedin-fill"></i></a>
+            <a href="#"><i class="ri-instagram-line"></i></a>
+          </div>
+        </div>
+
+
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4 class="footer__col-head">Top Safaris</h4>
+            <ul>
+              <a href="tours.html"><li>Wildlife Safaris</li></a>
+              <a href="tours.html"><li>Kenya Safaris</li></a>
+              <a href="tours.html"><li>Tanzania Safaris</li></a>
+              <a href="tours.html"><li>East Africa Safaris</li></a>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h4 class="footer__col-head">Destinations</h4>
+            <ul>
+              <a href="../destination/destination.html"><li>Uganda</li></a>
+              <a href="../destination/destination.html"><li>Kenya</li></a>
+              <a href="../destination/destination.html"><li>Tanzania</li></a>
+              <a href="../destination/destination.html"><li>Rwanda</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">National Parks</h4>
+            <ul>
+              <a href="#np"><li>Bwindi Forest NP</li></a>
+              <a href="#np"><li>Murchison Fall NP</li></a>
+              <a href="#np"><li>Queen Elizabeth NP</li></a>
+              <a href="#np"><li>Mgahnga Gorrilla NP</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Site Links</h4>
+            <ul>
+              <a href="../about.html"><li>About Us</li></a>
+              <a href="#"><li>Bookings T&Cs</li></a>
+              <a href="../contact.html"><li>Contact Us</li></a>
+              <a href="#"><li>Privacy Policy</li></a>
+              <a href="#"><li>Sitemap</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Contact</h4>
+            <div class="contact__info">
+              <p>Sebagala Taxi stage, Bukoto Kisasi Rd.<br>Kampala. Uganda</p>
+              <p><i class="ri-phone-line"></i>+256 709 710902</p>
+              <p><a href="duyadiscoveries@gmail.com"><i class="ri-mail-line"></i>duyadiscoveries@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="footer__col newsletter__box">
+            <h4 class="footer__col-head">Signup for our latest news & articles</h4>
+            <form>
+              <input type="email" placeholder="Email address" required>
+              <button type="submit"><i class="ri-arrow-right-line"></i></button>
+            </form>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" required>
+                I agree to the privacy policy
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          © 2025 Copyright by Duya Discoveries. All Rights Reserved
+        </div>
+       </footer>
+<!-- ===========SCHEMA SEO OPTIM========-->      
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Duya Discoveries",
+  "description": "Uganda-based tours & travel agency: safaris, gorilla trekking, cultural tours, transfers, and hotel bookings.",
+  "telephone": "+256700000000",
+  "email": "info@duyadiscoveries.com",
+  "areaServed": ["UG", "KE", "TZ", "RW"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "UG",
+    "addressLocality": "Kampala"
+  },
+  "sameAs": [
+    "https://facebook.com/yourpage",
+    "https://instagram.com/yourpage"
+  ],
+  "offers": [
+    {
+      "@type": "TouristTrip",
+      "name": "Uganda Wildlife Safari",
+      "description": "Experience game drives in Murchison Falls, Queen Elizabeth, and Kidepo Valley National Parks.",
+      "touristType": "Wildlife Enthusiasts",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1200",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/tours"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Gorilla Trekking Adventure",
+      "description": "A 3-day trek to Bwindi Impenetrable Forest for unforgettable gorilla encounters.",
+      "touristType": "Adventure Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1500",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/gorilla-trekking"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Cultural & Community Experience",
+      "description": "Engage with Ugandan communities, traditions, and local cuisine.",
+      "touristType": "Cultural Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "800",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/cultural-tours"
+      }
+    }
+  ]
+}
+</script>
+ 
+ 
+
+      <!--=============== SCROLLREVEAL ===============--> 
+      <script src="https://unpkg.com/scrollreveal"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="../assets/js/script.js"></script>
+ 
+ 
+   </body>
+</html>
