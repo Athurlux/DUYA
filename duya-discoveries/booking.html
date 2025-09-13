@@ -414,69 +414,56 @@
   </div>
 
   <script>
-  const form = document.getElementById("bookingForm");
-  const successMsg = document.getElementById("successMsg");
-  const errorMsg = document.getElementById("errorMsg");
+const form = document.getElementById("bookingForm");
+const successMsg = document.getElementById("successMsg");
+const errorMsg = document.getElementById("errorMsg");
 
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    const formData = {
-      fullname: document.getElementById("fullname").value,
-      dob: document.getElementById("dob").value,
-      nationality: document.getElementById("nationality").value,
-      passport: document.getElementById("passport").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      address: document.getElementById("address").value,
+  // Map form fields
+  const paid = (document.querySelector('input[name="paymentStatus"]:checked').value === "Paid");
 
-      tour: document.getElementById("tour").value,
-      tourDesc: document.getElementById("tourDesc").value,
-      departureDate: document.getElementById("departureDate").value,
-      numAdults: document.getElementById("numAdults").value,
-      numChildren: document.getElementById("numChildren").value,
-      accommodation: document.getElementById("accommodation").value,
-      specialRequests: document.getElementById("specialRequests").value,
+  const formData = {
+    fullname: document.getElementById("fullname").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    address: document.getElementById("address").value,
+    tour: document.getElementById("tour").value,
+    tourDesc: document.getElementById("tourDesc").value,
+    departureDate: document.getElementById("departureDate").value,
+    pickupStation: document.getElementById("pickupStation").value,
+    pickupAddress: document.getElementById("pickupAddress").value,
+    emgName: document.getElementById("emgName").value,
+    emgRelationship: document.getElementById("emgRelationship").value,
+    emgPhone: document.getElementById("emgPhone").value,
+    emgEmail: document.getElementById("emgEmail").value,
+    emgAddress: document.getElementById("emgAddress").value,
+    paid: paid
+  };
 
-      pickupStation: document.getElementById("pickupStation").value,
-      pickupAddress: document.getElementById("pickupAddress").value,
-
-      emgName: document.getElementById("emgName").value,
-      emgRelationship: document.getElementById("emgRelationship").value,
-      emgPhone: document.getElementById("emgPhone").value,
-      emgEmail: document.getElementById("emgEmail").value,
-      emgAddress: document.getElementById("emgAddress").value,
-
-      paymentStatus: document.querySelector('input[name="paymentStatus"]:checked').value,
-      paymentMethod: document.getElementById("paymentMethod").value,
-
-      terms: document.getElementById("terms").checked,
-      privacy: document.getElementById("privacy").checked,
-      newsletter: document.getElementById("newsletter").checked
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(res => res.text())
-    .then(data => {
-      if (data.includes("Success")) {
-        successMsg.style.display = "block";
-        errorMsg.style.display = "none";
-        form.reset();
-      } else {
-        throw new Error(data);
-      }
-    })
-    .catch(err => {
-      successMsg.style.display = "none";
-      errorMsg.style.display = "block";
-      console.error("Error:", err);
-    });
+  fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data.includes("Success")) {
+      successMsg.style.display = "block";
+      errorMsg.style.display = "none";
+      form.reset();
+    } else {
+      throw new Error(data);
+    }
+  })
+  .catch(err => {
+    successMsg.style.display = "none";
+    errorMsg.style.display = "block";
+    console.error("Error:", err);
   });
-  </script>
+});
+</script>
 
   <!--=============== SCROLLREVEAL ===============--> 
       <script src="https://unpkg.com/scrollreveal"></script>
@@ -486,5 +473,6 @@
 
 </body>
 </html>
+
 
 
