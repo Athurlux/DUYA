@@ -421,9 +421,10 @@ const errorMsg = document.getElementById("errorMsg");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // Map form fields
+  // Map paymentStatus to Boolean
   const paid = (document.querySelector('input[name="paymentStatus"]:checked').value === "Paid");
 
+  // Only include fields expected by Apps Script
   const formData = {
     fullname: document.getElementById("fullname").value,
     email: document.getElementById("email").value,
@@ -441,6 +442,8 @@ form.addEventListener("submit", function(e) {
     emgAddress: document.getElementById("emgAddress").value,
     paid: paid
   };
+
+  console.log("Sending data:", formData); // Debugging log
 
   fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
     method: "POST",
@@ -465,6 +468,7 @@ form.addEventListener("submit", function(e) {
 });
 </script>
 
+
   <!--=============== SCROLLREVEAL ===============--> 
       <script src="https://unpkg.com/scrollreveal"></script>
 
@@ -473,6 +477,7 @@ form.addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
