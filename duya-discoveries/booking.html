@@ -413,57 +413,58 @@
 
   </div>
 
-  <script>
-const form = document.getElementById("bookingForm");
-const successMsg = document.getElementById("successMsg");
-const errorMsg = document.getElementById("errorMsg");
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("bookingForm");
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  // Map paymentStatus to Boolean
-  const paid = (document.querySelector('input[name="paymentStatus"]:checked').value === "Paid");
+    // Map "Paid" radio button
+    const paid = (document.querySelector('input[name="paymentStatus"]:checked')?.value === "Paid");
 
-  // Only include fields expected by Apps Script
-  const formData = {
-    fullname: document.getElementById("fullname").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    address: document.getElementById("address").value,
-    tour: document.getElementById("tour").value,
-    tourDesc: document.getElementById("tourDesc").value,
-    departureDate: document.getElementById("departureDate").value,
-    pickupStation: document.getElementById("pickupStation").value,
-    pickupAddress: document.getElementById("pickupAddress").value,
-    emgName: document.getElementById("emgName").value,
-    emgRelationship: document.getElementById("emgRelationship").value,
-    emgPhone: document.getElementById("emgPhone").value,
-    emgEmail: document.getElementById("emgEmail").value,
-    emgAddress: document.getElementById("emgAddress").value,
-    paid: paid
-  };
+    // Prepare data for Apps Script
+    const formData = {
+      fullname: document.getElementById("fullname").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("address").value,
+      tour: document.getElementById("tour").value,
+      tourDesc: document.getElementById("tourDesc").value,
+      departureDate: document.getElementById("departureDate").value,
+      pickupStation: document.getElementById("pickupStation").value,
+      pickupAddress: document.getElementById("pickupAddress").value,
+      emgName: document.getElementById("emgName").value,
+      emgRelationship: document.getElementById("emgRelationship").value,
+      emgPhone: document.getElementById("emgPhone").value,
+      emgEmail: document.getElementById("emgEmail").value,
+      emgAddress: document.getElementById("emgAddress").value,
+      paid: paid
+    };
 
-  console.log("Sending data:", formData); // Debugging log
-
-  fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
-    method: "POST",
-    body: JSON.stringify(formData),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.text())
-  .then(data => {
-    if (data.includes("Success")) {
-      successMsg.style.display = "block";
-      errorMsg.style.display = "none";
-      form.reset();
-    } else {
-      throw new Error(data);
-    }
-  })
-  .catch(err => {
-    successMsg.style.display = "none";
-    errorMsg.style.display = "block";
-    console.error("Error:", err);
+    // Submit to Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.text())
+    .then(data => {
+      if (data.includes("Success")) {
+        successMsg.style.display = "block";
+        errorMsg.style.display = "none";
+        form.reset();
+      } else {
+        throw new Error(data);
+      }
+    })
+    .catch(err => {
+      console.error("Error:", err);
+      successMsg.style.display = "none";
+      errorMsg.style.display = "block";
+    });
   });
 });
 </script>
@@ -477,6 +478,7 @@ form.addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
