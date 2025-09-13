@@ -257,163 +257,104 @@
        </div>
     </header>
 
-  <div class="container">
-    <form id="bookingForm">
+ <div class="container">
+  <form id="bookingForm">
 
-  <!-- Traveler Information -->
-  <div class="form-section">
-    <h2>Traveler Information</h2>
+    <!-- Traveler Information -->
+    <div class="form-section">
+      <h2>Traveler Information</h2>
+      <label for="fullname">Full Legal Name</label>
+      <input type="text" id="fullname" name="fullname" required>
 
-    <label for="fullname">Full Legal Name</label>
-    <input type="text" id="fullname" name="fullname" required>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
 
-    <label for="dob">Date of Birth</label>
-    <input type="date" id="dob" name="dob" required>
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" required>
 
-    <label for="nationality">Nationality</label>
-    <input type="text" id="nationality" name="nationality" required>
-
-    <label for="passport">Passport / ID Number</label>
-    <input type="text" id="passport" name="passport" required>
-
-    <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone" name="phone" required>
-
-    <label for="address">Address</label>
-    <input type="text" id="address" name="address">
-  </div>
-
-  <!-- Tour Selection -->
-  <div class="form-section">
-    <h2>Tour Selection</h2>
-
-    <label for="tour">Choose a Tour Option</label>
-    <select id="tour" name="tour" required>
-      <option value="">-- Select Tour --</option>
-      <option value="Uganda Safari">Uganda Safari</option>
-      <option value="Kenya Safari">Kenya Safari</option>
-      <option value="Rwanda Safari">Rwanda Safari</option>
-      <option value="Tanzania Safari">Tanzania Safari</option>
-      <option value="Zanzibar Holiday">Zanzibar Holiday</option>
-      <option value="Farm Tour">Farm Tour</option>
-      <option value="Honeymoon">Honeymoon Package</option>
-      <option value="Gorilla Trekking">Gorilla Trekking</option>
-      <option value="Other">Other</option>
-    </select>
-
-    <label for="tourDesc">Tour Description</label>
-    <textarea id="tourDesc" name="tourDesc" placeholder="Describe your chosen tour..."></textarea>
-
-    <label for="departureDate">Date of Departure</label>
-    <input type="date" id="departureDate" name="departureDate" required>
-
-    <label for="numAdults">Number of Adults</label>
-    <input type="number" id="numAdults" name="numAdults" min="1" value="1" required>
-
-    <label for="numChildren">Number of Children</label>
-    <input type="number" id="numChildren" name="numChildren" min="0" value="0">
-
-    <label for="accommodation">Accommodation Preference</label>
-    <select id="accommodation" name="accommodation">
-      <option value="">-- Select Preference --</option>
-      <option value="Budget">Budget</option>
-      <option value="Mid-range">Mid-range</option>
-      <option value="Luxury">Luxury</option>
-    </select>
-
-    <label for="specialRequests">Special Requests (dietary, mobility, etc.)</label>
-    <textarea id="specialRequests" name="specialRequests"></textarea>
-  </div>
-
-  <!-- Pickup Info -->
-  <div class="form-section">
-    <h2>Pickup Information</h2>
-    <label for="pickupStation">Pickup Station</label>
-    <input type="text" id="pickupStation" name="pickupStation">
-
-    <label for="pickupAddress">Pickup Address</label>
-    <input type="text" id="pickupAddress" name="pickupAddress">
-  </div>
-
-  <!-- Emergency Contact -->
-  <div class="form-section">
-    <h2>Emergency Contact</h2>
-
-    <label for="emgName">Full Name</label>
-    <input type="text" id="emgName" name="emgName" required>
-
-    <label for="emgRelationship">Relationship</label>
-    <input type="text" id="emgRelationship" name="emgRelationship" required>
-
-    <label for="emgPhone">Phone Number</label>
-    <input type="text" id="emgPhone" name="emgPhone" required>
-
-    <label for="emgEmail">Email</label>
-    <input type="email" id="emgEmail" name="emgEmail">
-
-    <label for="emgAddress">Address</label>
-    <input type="text" id="emgAddress" name="emgAddress">
-  </div>
-
-  <!-- Payment -->
-  <div class="form-section">
-    <h2>Payment</h2>
-
-    <div class="checkbox-group">
-      <input type="radio" id="paidYes" name="paymentStatus" value="Paid" required>
-      <label for="paidYes">I have already made payment</label>
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address">
     </div>
 
-    <div class="checkbox-group">
-      <input type="radio" id="paidNo" name="paymentStatus" value="Not Paid" required>
-      <label for="paidNo">I will pay on arrival / later</label>
+    <!-- Tour Selection -->
+    <div class="form-section">
+      <h2>Tour Selection</h2>
+      <label for="tour">Choose a Tour Option</label>
+      <select id="tour" name="tour" required>
+        <option value="">-- Select Tour --</option>
+        <option value="Uganda Safari">Uganda Safari</option>
+        <option value="Kenya Safari">Kenya Safari</option>
+        <option value="Rwanda Safari">Rwanda Safari</option>
+        <option value="Tanzania Safari">Tanzania Safari</option>
+        <option value="Zanzibar Holiday">Zanzibar Holiday</option>
+        <option value="Farm Tour">Farm Tour</option>
+        <option value="Honeymoon">Honeymoon Package</option>
+        <option value="Gorilla Trekking">Gorilla Trekking</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="tourDesc">Tour Description</label>
+      <textarea id="tourDesc" name="tourDesc" placeholder="Describe your chosen tour..."></textarea>
+
+      <label for="departureDate">Date of Departure</label>
+      <input type="date" id="departureDate" name="departureDate" required>
     </div>
 
-    <label for="paymentMethod">Preferred Payment Method</label>
-    <select id="paymentMethod" name="paymentMethod">
-      <option value="">-- Select Method --</option>
-      <option value="Mobile Money">Mobile Money</option>
-      <option value="Bank Transfer">Bank Transfer</option>
-      <option value="Credit/Debit Card">Credit/Debit Card</option>
-      <option value="Cash">Cash</option>
-    </select>
-  </div>
+    <!-- Pickup Info -->
+    <div class="form-section">
+      <h2>Pickup Information</h2>
+      <label for="pickupStation">Pickup Station</label>
+      <input type="text" id="pickupStation" name="pickupStation">
 
-  <!-- Consent -->
-  <div class="form-section">
-    <h2>Consent</h2>
-    <div class="checkbox-group">
-      <input type="checkbox" id="terms" name="terms" required>
-      <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
+      <label for="pickupAddress">Pickup Address</label>
+      <input type="text" id="pickupAddress" name="pickupAddress">
     </div>
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="privacy" name="privacy" required>
-      <label for="privacy">I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+    <!-- Emergency Contact -->
+    <div class="form-section">
+      <h2>Emergency Contact</h2>
+      <label for="emgName">Full Name</label>
+      <input type="text" id="emgName" name="emgName" required>
+
+      <label for="emgRelationship">Relationship</label>
+      <input type="text" id="emgRelationship" name="emgRelationship" required>
+
+      <label for="emgPhone">Phone Number</label>
+      <input type="text" id="emgPhone" name="emgPhone" required>
+
+      <label for="emgEmail">Email</label>
+      <input type="email" id="emgEmail" name="emgEmail">
+
+      <label for="emgAddress">Address</label>
+      <input type="text" id="emgAddress" name="emgAddress">
     </div>
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="newsletter" name="newsletter">
-      <label for="newsletter">(Optional)Subscribe me to Duya Discoveries offers & updates</label>
+    <!-- Payment -->
+    <div class="form-section">
+      <h2>Payment</h2>
+      <div class="checkbox-group">
+        <input type="radio" id="paidYes" name="paymentStatus" value="Paid" required>
+        <label for="paidYes">I have already made payment</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="radio" id="paidNo" name="paymentStatus" value="Not Paid" required>
+        <label for="paidNo">I will pay on arrival / later</label>
+      </div>
     </div>
-  </div>
 
-  <button type="submit">Submit Booking</button>
+    <button type="submit">Submit Booking</button>
 
-  <div class="success-message" id="successMsg">
-    ✅ Thank you! Your booking has been submitted successfully.
-  </div>
-  <div class="error-message" id="errorMsg">
-    ❌ Something went wrong. Please try again.
-  </div>
-    </form>
+    <div class="success-message" id="successMsg" style="display:none;">
+      ✅ Thank you! Your booking has been submitted successfully.
+    </div>
+    <div class="error-message" id="errorMsg" style="display:none;">
+      ❌ Something went wrong. Please try again.
+    </div>
 
-  </div>
+  </form>
+</div>
 
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("bookingForm");
   const successMsg = document.getElementById("successMsg");
@@ -422,11 +363,9 @@ document.addEventListener("DOMContentLoaded", function() {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    // Map "Paid" radio button
-    const paid = (document.querySelector('input[name="paymentStatus"]:checked')?.value === "Paid");
+    const paid = document.querySelector('input[name="paymentStatus"]:checked').value === "Paid";
 
-    // Prepare data for Apps Script
-    const formData = {
+    const formData = new URLSearchParams({
       fullname: document.getElementById("fullname").value,
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
@@ -442,13 +381,11 @@ document.addEventListener("DOMContentLoaded", function() {
       emgEmail: document.getElementById("emgEmail").value,
       emgAddress: document.getElementById("emgAddress").value,
       paid: paid
-    };
+    });
 
-    // Submit to Apps Script
     fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
       method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "Content-Type": "application/json" }
+      body: formData
     })
     .then(res => res.text())
     .then(data => {
@@ -461,9 +398,9 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     })
     .catch(err => {
-      console.error("Error:", err);
       successMsg.style.display = "none";
       errorMsg.style.display = "block";
+      console.error("Error:", err);
     });
   });
 });
@@ -478,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
