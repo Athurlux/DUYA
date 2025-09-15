@@ -385,7 +385,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     fetch("https://script.google.com/macros/s/AKfycbwFRd9E86eDrzIv6QquAp51BzrWlAompMuBkozf1_Gj50zv_BKi5K3_ilrp_m1Vdzjh/exec", {
       method: "POST",
-      body: formData
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fullname: "...", email: "...", paid: true })
     })
     .then(res => res.text())
     .then(data => {
@@ -416,6 +417,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
