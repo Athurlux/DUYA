@@ -801,18 +801,88 @@ backToTop.onclick = function() {
           </div>
 
           <div class="footer__col newsletter__box">
-            <h4 class="footer__col-head">Signup for our latest news & articles</h4>
-            <form>
-              <input type="email" placeholder="Email address" required>
-              <button type="submit"><i class="ri-arrow-right-line"></i></button>
-            </form>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" required>
+    <h4 class="footer__col-head">Signup for our latest news & articles</h4>
+    
+    <form id="newsletterForm" action="https://script.google.com/macros/s/AKfycby_nFu6EAtDVcFnREjRJ3a-Qmqf2Wovlq9tnP2ek7HLgzyMCf9mfrklA2dZbKaT6nQ/exec" method="POST">
+        <input type="email" name="EmailAddress" placeholder="Email address" required>
+        
+        <button type="submit" class="newsletter-button">
+            <i class="ri-arrow-right-line"></i>
+        </button>
+        
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="PrivacyAgree" required>
                 I agree to the privacy policy
-              </label>
-            </div>
-          </div>
+            </label>
+        </div>
+
+        <p id="newsletter-response-message" style="margin-top: 10px;"></p>
+    </form>
+    
+    <div id="thankYouMessage" style="display: none; padding: 20px; text-align: center; border: 1px solid #d4edda; background-color: #f0fff0;">
+        <h4>🎉 Thank You for Subscribing!</h4>
+        <p>You're all set! You will now receive our latest news and articles.</p>
+    </div>
+</div>
+           <script>
+    const newsletterForm = document.getElementById('newsletterForm');
+    const thankYouDiv = document.getElementById('thankYouMessage');
+    const newsletterResponse = document.getElementById('newsletter-response-message');
+    // Note: We use the class selector here since the button doesn't have an ID
+    const newsletterButton = newsletterForm.querySelector('.newsletter-button');
+
+    newsletterForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop the default page redirect/refresh
+
+        const action = newsletterForm.action;
+        const formData = new FormData(newsletterForm);
+
+        // 1. Show a 'sending' status and disable the button
+        newsletterResponse.textContent = 'Subscribing...';
+        newsletterResponse.style.color = '#333';
+        newsletterButton.disabled = true;
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If HTTP status is bad (e.g., 404, 500)
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.result === 'success') {
+                
+                // On SUCCESS:
+                newsletterForm.style.display = 'none'; // Hide the entire form
+                thankYouDiv.style.display = 'block';   // Show the dedicated Thank You message
+                newsletterResponse.textContent = '';   // Clear the smaller inline message
+                
+            } else {
+                // Handle a server-side error (Apps Script returns 'result: error')
+                throw new Error(data.error || 'Subscription failed on the server.');
+            }
+        })
+        .catch(error => {
+            // Handle any network or processing errors
+            console.error('Subscription Error:', error);
+            newsletterResponse.style.color = 'red';
+            newsletterResponse.textContent = 'Subscription failed. Please try again.';
+        })
+        .finally(() => {
+            // Re-enable the button ONLY if the form is still visible (meaning there was an error)
+            if (newsletterForm.style.display !== 'none') {
+                 setTimeout(() => {
+                    newsletterButton.disabled = false;
+                }, 3000);
+            }
+        });
+    });
+</script>
         </div>
 
         <div class="footer__bottom">
@@ -898,6 +968,7 @@ backToTop.onclick = function() {
    </body>
 
 </html>
+
 
 
 
