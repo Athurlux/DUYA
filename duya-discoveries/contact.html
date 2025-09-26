@@ -556,6 +556,62 @@
         </div>
                     <input type="submit" value="Send Message" class="submit-button">
                 </form>
+               <script>
+    const form = document.getElementById('contactForm');
+    const responseMessage = document.getElementById('form-response-message');
+    const submitButton = form.querySelector('.submit-button'); // Select the submit button
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop the default page redirect/refresh
+
+        const action = form.action;
+        const formData = new FormData(form);
+
+        // 1. Show a 'sending' status and disable the button
+        responseMessage.style.display = 'block';
+        responseMessage.style.backgroundColor = '#ffc'; // Light yellow for pending
+        responseMessage.style.color = '#333';
+        responseMessage.textContent = 'Sending message... Please wait.';
+        submitButton.disabled = true;
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            // Check if the Apps Script responded successfully (HTTP status 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Check the JSON response content from your Apps Script
+            if (data.result === 'success') {
+                responseMessage.style.backgroundColor = '#d4edda'; // Light green for success
+                responseMessage.style.color = '#155724';
+                responseMessage.textContent = 'Message sent successfully! We will get back to you shortly.';
+                form.reset(); // Clear the form fields on success
+            } else {
+                // Handle a 'result: error' from the Apps Script
+                throw new Error(data.error || 'Unknown error occurred on the server.');
+            }
+        })
+        .catch(error => {
+            // Handle any network or processing errors
+            console.error('Submission Error:', error);
+            responseMessage.style.backgroundColor = '#f8d7da'; // Light red for error
+            responseMessage.style.color = '#721c24';
+            responseMessage.textContent = 'An error occurred. Please try again or contact us directly.';
+        })
+        .finally(() => {
+            // Re-enable the submit button after a short delay
+            setTimeout(() => {
+                submitButton.disabled = false;
+            }, 3000); // Re-enable after 3 seconds, or remove this for instant re-enable
+        });
+    });
+</script>
             </div>
         </div>
     </section>
@@ -840,4 +896,5 @@ backToTop.onclick = function() {
    </body>
 
 </html>
+
 
