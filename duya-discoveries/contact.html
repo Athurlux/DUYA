@@ -539,6 +539,9 @@
                        <p id="form-response-message" style="display: none; padding: 10px; border-radius: 5px;"></p>
 
             <input type="text" name="website" style="display:none">
+                        <!-- Honeypot -->
+  <input type="text" id="website" name="website" style="display:none">
+                       
             
             <div class="form-group">
                 <input type="text" name="First Name" class="fname" placeholder="First Name">
@@ -614,6 +617,13 @@
         });
     });
 </script>
+            <script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  if (document.getElementById("website").value !== "") {
+    e.preventDefault(); // bot filled i
+  }
+});
+            </script>
             </div>
         </div>
     </section>
@@ -968,6 +978,7 @@ backToTop.onclick = function() {
    </body>
 
 </html>
+
 
 
 
