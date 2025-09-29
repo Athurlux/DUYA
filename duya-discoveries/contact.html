@@ -559,8 +559,13 @@
                 <textarea name="Message" id="" placeholder="Write your message"></textarea>
             </div>
         </div>
+                   <!-- reCAPTCHA box -->
+  <div class="g-recaptcha" data-sitekey="6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc"></div>
                     <input type="submit" value="Send Message" class="submit-button">
                 </form>
+
+               <!-- Google reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
                <script>
     const form = document.getElementById('contactForm');
     const responseMessage = document.getElementById('form-response-message');
@@ -978,6 +983,7 @@ backToTop.onclick = function() {
    </body>
 
 </html>
+
 
 
 
