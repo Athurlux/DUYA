@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Booking Form - Find Your Perfect Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        accent: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .form-section {
+            border-left: 3px solid #3b82f6;
+            padding-left: 1.5rem;
+        }
+        
+        .form-card:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .step-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3b82f6;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .radio-container {
+            position: relative;
+            padding-left: 2.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .radio-checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+        }
+        
+        .radio-container:hover input ~ .radio-checkmark {
+            background-color: #ccc;
+        }
+        
+        .radio-container input:checked ~ .radio-checkmark {
+            background-color: #3b82f6;
+        }
+        
+        .radio-checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .radio-container input:checked ~ .radio-checkmark:after {
+            display: block;
+        }
+        
+        .radio-container .radio-checkmark:after {
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            transform: translate(-50%, -50%);
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-900 mb-2">Accommodation Booking</h1>
+                <p class="text-xl text-gray-600">Tell us your preferences and we'll find your perfect stay</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden form-card">
+            <div class="p-8">
+                <form id="bookingForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-section mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="step-indicator">1</div>
+                            <h2 class="text-2xl font-bold text-gray-900 ml-4">Personal Information</h2>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="nationality" class="block text-sm font-medium text-gray-700 mb-2">Nationality *</label>
+                                <select id="nationality" name="nationality" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select your nationality</option>
+                                    <option value="usa">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="france">France</option>
+                                    <option value="italy">Italy</option>
+                                    <option value="spain">Spain</option>
+                                    <option value="japan">Japan</option>
+                                    <option value="china">China</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Travel Details -->
+                    <div class="form-section mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="step-indicator">2</div>
+                            <h2 class="text-2xl font-bold text-gray-900 ml-4">Travel Details</h2>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="checkIn" class="block text-sm font-medium text-gray-700 mb-2">Check-in Date *</label>
+                                <input type="date" id="checkIn" name="checkIn" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="checkOut" class="block text-sm font-medium text-gray-700 mb-2">Check-out Date *</label>
+                                <input type="date" id="checkOut" name="checkOut" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="guests" class="block text-sm font-medium text-gray-700 mb-2">Number of Guests *</label>
+                                <select id="guests" name="guests" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6+ Guests</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="rooms" class="block text-sm font-medium text-gray-700 mb-2">Number of Rooms *</label>
+                                <select id="rooms" name="rooms" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="1">1 Room</option>
+                                    <option value="2">2 Rooms</option>
+                                    <option value="3">3 Rooms</option>
+                                    <option value="4">4+ Rooms</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="destination" class="block text-sm font-medium text-gray-700 mb-2">Preferred Destination/City *</label>
+                                <input type="text" id="destination" name="destination" placeholder="e.g., Paris, Bali, New York" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Accommodation Preferences -->
+                    <div class="form-section mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="step-indicator">3</div>
+                            <h2 class="text-2xl font-bold text-gray-900 ml-4">Accommodation Preferences</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Preferred Accommodation Type *</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="luxuryHotel" required>
+                                    <span class="radio-checkmark"></span>
+                                    Luxury Hotels
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="boutiqueHotel">
+                                    <span class="radio-checkmark"></span>
+                                    Boutique Hotels
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="beachResort">
+                                    <span class="radio-checkmark"></span>
+                                    Beach Resorts
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="privateVilla">
+                                    <span class="radio-checkmark"></span>
+                                    Private Villas
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="mountainLodge">
+                                    <span class="radio-checkmark"></span>
+                                    Mountain Lodges
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="ecoCabin">
+                                    <span class="radio-checkmark"></span>
+                                    Eco-Friendly Cabins
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="servicedApartment">
+                                    <span class="radio-checkmark"></span>
+                                    Serviced Apartments
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="accommodationType" value="businessHotel">
+                                    <span class="radio-checkmark"></span>
+                                    Business Hotels
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-gray-700 mb-2">Budget Range per Night *</label>
+                                <select id="budget" name="budget" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Select budget range</option>
+                                    <option value="under100">Under $100</option>
+                                    <option value="100-200">$100 - $200</option>
+                                    <option value="200-400">$200 - $400</option>
+                                    <option value="400-800">$400 - $800</option>
+                                    <option value="800+">$800+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="starRating" class="block text-sm font-medium text-gray-700 mb-2">Minimum Star Rating</label>
+                                <select id="starRating" name="starRating" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Any rating</option>
+                                    <option value="3">3 Stars & above</option>
+                                    <option value="4">4 Stars & above</option>
+                                    <option value="5">5 Stars only</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Required Amenities (Select all that apply)</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="wifi" class="mr-2 h-4 w-4 text-blue-600">
+                                    Free WiFi
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="breakfast" class="mr-2 h-4 w-4 text-blue-600">
+                                    Breakfast Included
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="pool" class="mr-2 h-4 w-4 text-blue-600">
+                                    Swimming Pool
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="parking" class="mr-2 h-4 w-4 text-blue-600">
+                                    Free Parking
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="gym" class="mr-2 h-4 w-4 text-blue-600">
+                                    Fitness Center
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="spa" class="mr-2 h-4 w-4 text-blue-600">
+                                    Spa Services
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="airport" class="mr-2 h-4 w-4 text-blue-600">
+                                    Airport Shuttle
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="pet" class="mr-2 h-4 w-4 text-blue-600">
+                                    Pet Friendly
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="amenities" value="kitchen" class="mr-2 h-4 w-4 text-blue-600">
+                                    Kitchen Facilities
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Additional Information -->
+                    <div class="form-section mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="step-indicator">4</div>
+                            <h2 class="text-2xl font-bold text-gray-900 ml-4">Additional Information</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="specialRequests" class="block text-sm font-medium text-gray-700 mb-2">Special Requests or Requirements</label>
+                            <textarea id="specialRequests" name="specialRequests" rows="4" 
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                      placeholder="Any dietary restrictions, accessibility needs, anniversary celebrations, etc."></textarea>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Travel Purpose</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="radio-container">
+                                    <input type="radio" name="travelPurpose" value="leisure">
+                                    <span class="radio-checkmark"></span>
+                                    Leisure/Vacation
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="travelPurpose" value="business">
+                                    <span class="radio-checkmark"></span>
+                                    Business
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="travelPurpose" value="honeymoon">
+                                    <span class="radio-checkmark"></span>
+                                    Honeymoon
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="travelPurpose" value="family">
+                                    <span class="radio-checkmark"></span>
+                                    Family Trip
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center mb-6">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="mr-2 h-4 w-4 text-blue-600">
+                            <label for="newsletter" class="text-sm text-gray-700">
+                                I would like to receive special offers and travel inspiration via email
+                            </label>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="terms" name="terms" required class="mr-2 h-4 w-4 text-blue-600">
+                            <label for="terms" class="text-sm text-gray-700">
+                                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> *
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="submit-btn bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-12 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg">
+                            Find My Perfect Accommodation
+                        </button>
+                        <p class="text-sm text-gray-500 mt-4">Our travel experts will contact you within 24 hours with personalized recommendations</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-300">
+                Need help with your booking? Call us at <a href="tel:+1234567890" class="text-blue-400 hover:underline">+1 (234) 567-890</a> or email <a href="mailto:bookings@travelcompany.com" class="text-blue-400 hover:underline">bookings@travelcompany.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation and submission handling
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const accommodationType = formData.get('accommodationType');
+            const firstName = formData.get('firstName');
+            const email = formData.get('email');
+            const checkIn = formData.get('checkIn');
+            const checkOut = formData.get('checkOut');
+            
+            // Basic validation
+            if (!accommodationType) {
+                alert('Please select your preferred accommodation type.');
+                return;
+            }
+            
+            if (new Date(checkIn) >= new Date(checkOut)) {
+                alert('Check-out date must be after check-in date.');
+                return;
+            }
+            
+            // In a real implementation, this would send data to a server
+            // For demo purposes, show a success message
+            alert(`Thank you ${firstName}! Your booking request has been submitted successfully.\n\nWe'll contact you at ${email} within 24 hours with personalized accommodation recommendations based on your preferences for ${accommodationType.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}.\n\nYour travel dates: ${checkIn} to ${checkOut}`);
+            
+            // Reset form (optional)
+            // this.reset();
+        });
+
+        // Date validation for check-out date
+        document.getElementById('checkIn').addEventListener('change', function() {
+            const checkInDate = new Date(this.value);
+            const checkOutInput = document.getElementById('checkOut');
+            const tomorrow = new Date();
+            tomorrow.setDate(checkInDate.getDate() + 1);
+            checkOutInput.min = tomorrow.toISOString().split('T')[0];
+        });
+
+        // Initialize check-out min date
+        const today = new Date();
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+        document.getElementById('checkOut').min = tomorrow.toISOString().split('T')[0];
+    </script>
+</body>
+</html>

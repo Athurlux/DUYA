@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+      
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.4.0/remixicon.css" crossorigin="">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="../assets/css/style.css">
+      <link rel="stylesheet" href="../assets/css/responsive.css">
+      <link rel="stylesheet" href="../assets/css/base.css">
+      <!-- 2. The Fixed Meta Description (The descriptive text below the link) -->
+    <meta name="description" content="Plan your unforgettable East Africa adventure. Duya Discoveries specializes in wildlife safaris, cultural experiences, gorilla trekking, and honeymoon tours.">
+
+
+      <!-- 3. The Canonical Tag (Tells Google this is the official URL) -->
+    <link rel="canonical" href="https://duyadiscoveries.com/">
+      <!--=============== TITLE ===============-->
+
+     <title> Accommodations - Your Perfect Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+
+ /* WhatsApp button (left, lower) */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;   /* Lower position */
+  left: 20px;     /* On the left side */
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+}
+
+/* Back to Top button (left, higher) */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 90px;   /* Higher than WhatsApp */
+  left: 20px;     /* On the left side */
+  z-index: 100;
+  border: none;
+  outline: none;
+  background-color: #25d366;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+#backToTop:hover {
+  background-color: #128c7e;
+}
+ 
+.created-by {
+    /* Adjust margin and font size */
+    margin: 0 20px 0 0; /* 20px space on the right edge */
+    font-size: 0.9em;
+}
+
+.created-by a {
+    color: #add8e6; /* Light blue link color */
+    text-decoration: none;
+}
+.accommodation-card:hover {
+            transform: translateY(-0.25rem);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .image-grid {
+            display: grid;
+            gap: 0.25rem;
+            height: 200px;
+        }
+        
+        .image-grid-1 { grid-template-columns: 1fr; }
+        .image-grid-2 { grid-template-columns: 1fr 1fr; }
+        .image-grid-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+        .image-grid-3 > :first-child { grid-row: span 2; }
+        .image-grid-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .luxury-icon { background-color: #8b5cf6; color: white; }
+        .beach-icon { background-color: #06b6d4; color: white; }
+        .mountain-icon { background-color: #10b981; color: white; }
+        .city-icon { background-color: #f59e0b; color: white; }
+        .resort-icon { background-color: #ec4899; color: white; }
+        .villa-icon { background-color: #ef4444; color: white; }
+</style>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        luxury: '#8b5cf6',
+                        beach: '#06b6d4',
+                        mountain: '#10b981',
+                        city: '#f59e0b'
+                    }
+                }
+            }
+        }
+</script>
+
+
+   </head>
+   <body>
+
+
+      <!--==================== 
+               HEADER
+       ====================-->
+    
+    <header id="header" class="header">
+      <div class="header__wrapper">
+        <!-- Logo -->
+        <div class="header__logo">
+          <img src="../assets/images/logo1.png" alt="" class="header__logo-img">
+        </div>
+        
+        <!-- Right Side -->
+        <div class="header__right">
+
+          <!-- Top Bar -->
+          <div class="top__bar">
+            <div class="top__bar-left">
+              <span><i class="ri-map-pin-line"></i>Bukoto Kisasi Rd, Kampala</span>
+              <span><i class="ri-mail-line"></i>duyadiscoveries@gmail.com</span>
+            </div>
+
+            <div class="top__bar-right">
+              <div class="top__bar-icons">
+                <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Navbar -->
+          <nav class="main__nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="../index.html" class="nav__link">Home</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="../tours/tours.html" class="nav__link">Tours<i class="ri-arrow-down-s-line"></i></a>
+                <ul class="nav__dropdown">
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#gt" class="nav__dropdown-link">Gorrilla Trekking</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#ft" class="nav__dropdown-link">Farm Tours</a>
+                  </li>
+
+                  <li class="nav__dropdown-item">
+                    <a href="../tours/tours.html#np" class="nav__dropdown-link">National Parks</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav__item">
+                <a href="../destination/destination.html" class="nav__link">Destination</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="#" class="nav__link">Accommodation</a>
+              </li>
+
+              <li class="nav__item">
+                <a href="../about.html" class="nav__link">About Us</a>
+              </li>
+              <li class="nav__item">
+                <a href="../contact.html" class="nav__link">Contacts</a>
+              </li>
+            </ul>
+
+
+            <div class="right-content">
+              <div class="phone">
+                <i class="ri-phone-fill"></i>
+                <div class="phone__text">
+                  <span>Call Anytime</span>
+                  <strong class="phone__number">+256 753 868152</strong>
+                </div>
+              </div>
+              <a href="../booking.html"><button class="btn">Start Booking</button></a>
+            </div>
+
+            <div class="menu-icon" id="menu-icon"><i class="ri-menu-3-fill"></i></div>
+          </nav>
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
+       <div class="sidebar" id="sidebar">
+        <div class="slidbar__header">
+          <div class="sidebar__logo">
+            <img src="../assets/images/logo2.png" alt="" class="sidebar__logo-img">
+          </div>
+          <div class="close-icon" id="close-icon"><i class="ri-close-fill"></i></div>
+        </div>
+
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="../index.html" class="sidebar__link">Home</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../tours/tours.html" class="sidebar__link">Tours<i class="ri-arrow-right-s-line"></i></a>
+            <ul class="sidebar__dropdown">
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#gt" class="sidebar__dropdown-link">Gorrilla Trekking</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#ft" class="sidebar__dropdown-link">Farm Tours</a>
+              </li>
+
+              <li class="sidebar__dropdown-item">
+                <a href="../tours/tours.html#np" class="sidebar__dropdown-link">National Parks</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../destination/destination.html" class="sidebar__link">Destination</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">Accommodation/a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../about.html" class="sidebar__link">About Us</a>
+          </li>
+
+          <li class="sidebar__item">
+            <a href="../contact.html" class="sidebar__link">Contact</a>
+          </li>
+        </ul>
+        
+
+        <div class="sidebar__socials">
+          <a href="https://www.facebook.com/share/1ASDy21PmP"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://x.com/DuyaDiscoveries?t=OEFi1LXZ_NyT-BR32171zA&s=09"><i class="ri-twitter-fill"></i></a>
+                <a href="https://www.instagram.com/duyadicoveries?igsh=emo1Z3FvcHozaXdn"><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.tiktok.com/@duyadicoveries?_t=ZM-8zQ4RWLn8p4&_r=1"><i class="ri-tiktok-fill"></i></a>
+                <a href="duyadicoveries@gmail.com"><i class="ri-email-fill"></i></a>
+        </div>
+       </div>
+    </header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Luxury Hotels Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="feature-icon luxury-icon">
+                        <i class="fas fa-hotel text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Luxury Hotels</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Experience world-class service, elegant rooms, and premium amenities in our luxury hotel collection
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 5-Star Hotel -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-2">
+                        <img src="htl3.jpg" alt="5-Star Hotel" class="w-full h-full object-cover">
+                        <img src="htl5.jpg" alt="Hotel Lobby" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Luxury Hotels</h3>
+                        <p class="text-gray-600 mb-4">
+                            Premium accommodations featuring spacious rooms, fine dining restaurants, spa facilities, and 24/7 concierge service.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>King-size beds with premium linens</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Fine dining restaurants</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Full-service spa & wellness center</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Business center & meeting rooms</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition-all duration-200">
+                            Book Now
+                        </button></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Beach Resorts Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="feature-icon beach-icon">
+                        <i class="fas fa-umbrella-beach text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Beach Resorts</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Relax in paradise with oceanfront accommodations, private beaches, and tropical amenities
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- All-Inclusive Resorts -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-2">
+                        <img src="rst4.jpg" alt="All-Inclusive Resort" class="w-full h-full object-cover">
+                        <img src="rst3.jpg" alt="Beach View" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">All-Inclusive Resorts</h3>
+                        <p class="text-gray-600 mb-4">
+                            Everything included: meals, drinks, activities, and entertainment in stunning beachfront locations.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Unlimited gourmet dining & premium drinks</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Water sports & beach activities</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Entertainment & nightlife</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Kids clubs & family activities</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-cyan-700 hover:to-cyan-800 transition-all duration-200">
+                            Book Now
+                        </button></a>
+                    </div>
+                </div>
+
+                <!-- Private Villas -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-3">
+                        <img src="rst1.jpg" alt="Private Villa" class="w-full h-full object-cover">
+                        <img src="pool.jpg" alt="Infinity Pool" class="w-full h-full object-cover">
+                        <img src="rst2.jpg" alt="Ocean View" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Private Beach Villas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Ultimate privacy with your own villa featuring private pools, direct beach access, and personal staff.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Private infinity pools</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Direct beach access</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Personal chef & butler service</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Spa treatments in-room</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-cyan-700 hover:to-cyan-800 transition-all duration-200">
+                            Reserve Private Villa
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mountain & Nature Retreats Section -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="feature-icon mountain-icon">
+                        <i class="fas fa-mountain text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Mountain & Nature Retreats</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Escape to nature with cozy cabins, mountain lodges, and eco-friendly accommodations
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Mountain Lodges -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-2">
+                        <img src="mtn1.jpg" alt="Mountain Lodge" class="w-full h-full object-cover">
+                        <img src="mtn2.jpg" alt="Fireplace" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mountain Lodges</h3>
+                        <p class="text-gray-600 mb-4">
+                            Rustic yet comfortable accommodations perfect for skiing, hiking, and mountain adventures.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Stone fireplaces & wooden interiors</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Ski-in/ski-out access</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Mountain view balconies</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Hiking trail access</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200">
+                            Plan Mountain Getaway
+                        </button></a>
+                    </div>
+                </div>
+
+                <!-- Eco Cabins -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-3">
+                        <img src="nat1.jpg" alt="Eco Cabin" class="w-full h-full object-cover">
+                        <img src="nat2.jpg" alt="Solar Panels" class="w-full h-full object-cover">
+                        <img src="nat3.jpg" alt="Nature View" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Eco-Friendly Cabins</h3>
+                        <p class="text-gray-600 mb-4">
+                            Sustainable accommodations that minimize environmental impact while maximizing comfort and connection to nature.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Locally sourced building materials</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Organic gardens & farm-to-table dining</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Wildlife viewing opportunities</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-200">
+                            Choose Eco Retreat
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- City Apartments & Serviced Accommodations Section -->
+        <section>
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="feature-icon city-icon">
+                        <i class="fas fa-city text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">City Apartments & Serviced Accommodations</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Modern, convenient accommodations perfect for business travelers and urban explorers
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviced Apartments -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-2">
+                        <img src="apt1.jpg" alt="Serviced Apartment" class="w-full h-full object-cover">
+                        <img src="apt2.jpg" alt="Modern Kitchen" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Serviced Apartments</h3>
+                        <p class="text-gray-600 mb-4">
+                            Fully furnished apartments with hotel-like services, perfect for extended stays.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Fully equipped kitchens</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Weekly housekeeping</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Business amenities</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Central city locations</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all duration-200">
+                            Book City Apartments
+                        </button></a>
+                    </div>
+                </div>
+
+                <!-- Business Hotels -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-2">
+                        <img src="htl2.jpg" alt="Business Hotel" class="w-full h-full object-cover">
+                        <img src="htl4.jpg" alt="Meeting Room" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Business Hotels</h3>
+                        <p class="text-gray-600 mb-4">
+                        Professional accommodations with business centers, meeting rooms, and convenient locations near business districts.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>High-speed internet</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>24/7 business center</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Airport shuttle service</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Express check-in/out</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all duration-200">
+                            Book Business Stay
+                        </button></a>
+                    </div>
+                </div>
+
+                <!-- Luxury Suites -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden accommodation-card">
+                    <div class="image-grid image-grid-3">
+                        <img src="suit1.jpg" alt="Luxury Suite" class="w-full h-full object-cover">
+                        <img src="apt3.jpg" alt="City View" class="w-full h-full object-cover">
+                        <img src="nat4.jpg" alt="Executive Lounge" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Executive Suites</h3>
+                        <p class="text-gray-600 mb-4">
+                            Premium suites with separate living areas, executive lounge access, and enhanced amenities for discerning travelers.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Separate living & sleeping areas</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Executive lounge access</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Premium toiletries & bathrobes</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Concierge & valet service</span>
+                            </div>
+                        </div>
+                        <a href="booking.html"><button class="w-full mt-4 bg-gradient-to-r from-amber-600 to-amber-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all duration-200">
+                            Reserve Executive Suite
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Add smooth scrolling for anchor links (if needed)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add booking functionality
+        document.querySelectorAll('button.bg-gradient-to-r').forEach(button => {
+            button.addEventListener('click', function() {
+                const accommodationType = this.closest('.accommodation-card').querySelector('h3').textContent;
+                alert(`Booking initiated for: ${accommodationType}\n\nIn a real implementation, this would redirect to a booking page or open a booking modal.`);
+            });
+        });
+    </script>
+
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/256709710902" 
+   class="whatsapp-float" 
+   target="_blank">
+   <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// Get the button
+let backToTop = document.getElementById("backToTop");
+
+// Show button after scrolling down 200px
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+};
+
+// Scroll smoothly to top
+backToTop.onclick = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
+
+ 
+
+      <!--====================
+               FOOTER
+       ====================-->
+
+       <footer class="footer" id="footer" style="background-image: url(../assets/images/footer-bg.png);">
+
+        <div class="footer__header">
+          <div class="footer__logo">
+            <img src="../assets/images/logo1.png" alt="">
+          </div>
+          <div class="social__icons">
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="#"><i class="ri-linkedin-fill"></i></a>
+            <a href="#"><i class="ri-instagram-line"></i></a>
+          </div>
+        </div>
+
+
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4 class="footer__col-head">Top Safaris</h4>
+            <ul>
+              <a href="../tours/tours.html"><li>Wildlife Safaris</li></a>
+              <a href="../tours/tours.html"><li>Kenya Safaris</li></a>
+              <a href="../tours/tours.html"><li>Tanzania Safaris</li></a>
+              <a href="../tours/tours.html"><li>East Africa Safaris</li></a>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h4 class="footer__col-head">Destinations</h4>
+            <ul>
+              <a href="../destination/destination.html"><li>Uganda</li></a>
+              <a href="../destination/destination.html"><li>Kenya</li></a>
+              <a href="../destination/destination.html"><li>Tanzania</li></a>
+              <a href="../destination/destination.html"><li>Rwanda</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">National Parks</h4>
+            <ul>
+              <a href="../tours/tours.html#np"><li>Bwindi Forest NP</li></a>
+              <a href="../tours/tours.html#np"><li>Murchison Fall NP</li></a>
+              <a href="../tours/tours.html#np"><li>Queen Elizabeth NP</li></a>
+              <a href="../tours/tours.html#np"><li>Mgahnga Gorrilla NP</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Site Links</h4>
+            <ul>
+              <a href="../about.html"><li>About Us</li></a>
+              <a href="#"><li>Bookings T&Cs</li></a>
+              <a href="../contact.html"><li>Contact Us</li></a>
+              <a href="#"><li>Privacy Policy</li></a>
+              <a href="../sitemap.xml"><li>Sitemap</li></a>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-head">Contact</h4>
+            <div class="contact__info">
+              <p>Sebagala Taxi stage, Bukoto Kisasi Rd.<br>Kampala. Uganda</p>
+              <p><i class="ri-phone-line"></i>+256 753 868152</p>
+              <p><i class="ri-mail-line"></i>duyadiscoveries@gmail.com</p>
+            </div>
+          </div>
+
+<div class="footer__col newsletter__box">
+    <h4 class="footer__col-head">Signup for our latest news & articles</h4>
+    
+    <form id="newsletterForm" action="https://script.google.com/macros/s/AKfycby_nFu6EAtDVcFnREjRJ3a-Qmqf2Wovlq9tnP2ek7HLgzyMCf9mfrklA2dZbKaT6nQ/exec" method="POST">
+        <input type="email" name="EmailAddress" placeholder="Email address" required>
+        
+        <button type="submit" class="newsletter-button">
+            <i class="ri-arrow-right-line"></i>
+        </button>
+        
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="PrivacyAgree" required>
+                I agree to the privacy policy
+            </label>
+        </div>
+
+        <p id="newsletter-response-message" style="margin-top: 10px;"></p>
+    </form>
+    
+    <div id="thankYouMessage" style="display: none; padding: 20px; text-align: center; border: 1px solid #d4edda; background-color: #f0fff0;">
+        <h4>🎉 Thank You for Subscribing!</h4>
+        <p>You're all set! You will now receive our latest news and articles.</p>
+    </div>
+</div>
+<script>
+    const newsletterForm = document.getElementById('newsletterForm');
+    const thankYouDiv = document.getElementById('thankYouMessage');
+    const newsletterResponse = document.getElementById('newsletter-response-message');
+    // Note: We use the class selector here since the button doesn't have an ID
+    const newsletterButton = newsletterForm.querySelector('.newsletter-button');
+
+    newsletterForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop the default page redirect/refresh
+
+        const action = newsletterForm.action;
+        const formData = new FormData(newsletterForm);
+
+        // 1. Show a 'sending' status and disable the button
+        newsletterResponse.textContent = 'Subscribing...';
+        newsletterResponse.style.color = '#333';
+        newsletterButton.disabled = true;
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If HTTP status is bad (e.g., 404, 500)
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.result === 'success') {
+                
+                // On SUCCESS:
+                newsletterForm.style.display = 'none'; // Hide the entire form
+                thankYouDiv.style.display = 'block';   // Show the dedicated Thank You message
+                newsletterResponse.textContent = '';   // Clear the smaller inline message
+                
+            } else {
+                // Handle a server-side error (Apps Script returns 'result: error')
+                throw new Error(data.error || 'Subscription failed on the server.');
+            }
+        })
+        .catch(error => {
+            // Handle any network or processing errors
+            console.error('Subscription Error:', error);
+            newsletterResponse.style.color = 'red';
+            newsletterResponse.textContent = 'Subscription failed. Please try again.';
+        })
+        .finally(() => {
+            // Re-enable the button ONLY if the form is still visible (meaning there was an error)
+            if (newsletterForm.style.display !== 'none') {
+                 setTimeout(() => {
+                    newsletterButton.disabled = false;
+                }, 3000);
+            }
+        });
+    });
+</script>
+    </div>
+        <div class="footer__bottom">
+          © 2025 Copyright by Duya Discoveries. All Rights Reserved
+        </div>
+          <div class="footer-content">
+        <p class="created-by">
+            Created by <a href="https://wa.me/256743001091" target="_blank">ARTHUR</a>
+        </p>
+    </div>
+       </footer>
+      
+<!--===========Schema Seo==========--> 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Duya Discoveries",
+  "description": "Uganda-based tours & travel agency: safaris, gorilla trekking, cultural tours, transfers, and hotel bookings.",
+  "telephone": "+256 709 710902",
+  "email": "duyadiscoveries@gmail.com",
+  "areaServed": ["UG", "KE", "TZ", "RW"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "UG",
+    "addressLocality": "Kampala"
+  },
+  "sameAs": [
+    "https://facebook.com/duyadiscoveries",
+    "https://instagram.com/duyadiscoveries"
+  ],
+  "offers": [
+    {
+      "@type": "TouristTrip",
+      "name": "Uganda Wildlife Safari",
+      "description": "Experience game drives in Murchison Falls, Queen Elizabeth, and Kidepo Valley National Parks.",
+      "touristType": "Wildlife Enthusiasts",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1200",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/tours/tours"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Gorilla Trekking Adventure",
+      "description": "A 3-day trek to Bwindi Impenetrable Forest for unforgettable gorilla encounters.",
+      "touristType": "Adventure Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "1500",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/tours/tours/gt"
+      }
+    },
+    {
+      "@type": "TouristTrip",
+      "name": "Cultural & Community Experience",
+      "description": "Engage with Ugandan communities, traditions, and local cuisine.",
+      "touristType": "Cultural Travelers",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "800",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01",
+        "url": "https://duyadiscoveries.com/tours/tours"
+      }
+    }
+  ]
+}
+</script>
+ 
+
+      <!--=============== SCROLLREVEAL ===============--> 
+      <script src="https://unpkg.com/scrollreveal"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="../assets/js/script.js"></script>
+ 
+ 
+   </body>
+
+</html>
+
+
+
