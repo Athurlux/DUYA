@@ -155,9 +155,11 @@
                         <label for="bot-field">Do not fill this field</label>
                         <input type="text" name="bot-field" id="bot-field">
                     </div>
-                    <!-- 2. TIMING FIELD: Records load time. Submitted too fast = bot. -->
-                    <input type="hidden" name="formStartTime" id="formStartTime">
-                    
+                    <!-- REQUIRED for reCAPTCHA v3. Must have the ID 'recaptchaToken' -->
+                    <input type="hidden" id="recaptchaToken" name="recaptchaToken" value="">
+                    <!-- REQUIRED for Bot Timing Detection. Must have the ID 'formStartTime' -->
+                    <input type="hidden" id="formStartTime" name="formStartTime" value="">
+
                     <!-- Step 1: Personal Information -->
                     <div class="form-section">
                         <div class="flex items-center mb-6">
@@ -619,4 +621,5 @@
     </script>
 </body>
 </html>
+
 
