@@ -425,201 +425,160 @@
     <!-- 5. Intl-Tel-Input JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
     
-    <script>
-        
-        // ===============================================================
-        // CONFIGURATION AND UTILITIES
-        // ===============================================================
-        
-        // ⚠️ CRITICAL STEP 1: PASTE YOUR LATEST Apps Script Deployment URL HERE!
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDgMaY9blhT4-eXIwmsjLSQ51N8Ejq4Ni8sTxZR6y3WvAUo9EiBwYvXkSCQ_hghf1ydA/exec";
-        
-        // Site Key (must match the one loaded in the <head>)
-        const RECAPTCHA_SITE_KEY = '6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc';
+   <script>
+        
+        // ===============================================================
+        // CONFIGURATION AND UTILITIES
+        // ===============================================================
+        
+        // NOTE: The GOOGLE_SCRIPT_URL should now be set directly in the <form action="..."> attribute
+        // We keep it here only for reference or if you need it for other purposes.
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDgMaY9blhT4-eXIwmsjLSQ51N8Ejq4Ni8sTxZR6y3WvAUo9EiBwYvXkSCQ_hghf1ydA/exec";
+        
+        // Site Key (must match the one loaded in the <head>)
+        const RECAPTCHA_SITE_KEY = '6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc';
 
-        let itiInstance; 
+        let itiInstance; 
 
-        function showMessageBox(title, message, isError = false) {
-            const messageBox = document.getElementById('messageBox');
-            document.getElementById('messageText').textContent = message;
-            
-            const titleElement = document.getElementById('messageTitle');
-            titleElement.textContent = title;
-            titleElement.classList.remove('text-blue-600', 'text-red-600');
-            
-            // Change color based on success/error
-            const button = messageBox.querySelector('button');
-            button.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'bg-red-600', 'hover:bg-red-700');
+        function showMessageBox(title, message, isError = false) {
+            const messageBox = document.getElementById('messageBox');
+            document.getElementById('messageText').textContent = message;
+            
+            const titleElement = document.getElementById('messageTitle');
+            titleElement.textContent = title;
+            titleElement.classList.remove('text-blue-600', 'text-red-600');
+            
+            // Change color based on success/error
+            const button = messageBox.querySelector('button');
+            button.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'bg-red-600', 'hover:bg-red-700');
 
-            if (isError) {
-                titleElement.classList.add('text-red-600');
-                button.classList.add('bg-red-600', 'hover:bg-red-700');
-            } else {
-                titleElement.classList.add('text-blue-600');
-                button.classList.add('bg-blue-600', 'hover:bg-blue-700');
-            }
-            
-            messageBox.classList.remove('hidden');
-        }
+            if (isError) {
+                titleElement.classList.add('text-red-600');
+                button.classList.add('bg-red-600', 'hover:bg-red-700');
+            } else {
+                titleElement.classList.add('text-blue-600');
+                button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            }
+            
+            messageBox.classList.remove('hidden');
+        }
 
-        function hideMessageBox() {
-            document.getElementById('messageBox').classList.add('hidden');
-        }
-        
-        async function loadCountries() {
-            // Function to load the searchable country list
-            try {
-                const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
-                const data = await response.json();
-                
-                const countries = data.map(item => ({ id: item.name.common.trim(), text: item.name.common.trim() })).sort((a, b) => a.text.localeCompare(b.text)); 
-                countries.unshift({id: '', text: 'Select your nationality', selected: true, disabled: true});
+        function hideMessageBox() {
+            document.getElementById('messageBox').classList.add('hidden');
+        }
+        
+        async function loadCountries() {
+            // Function to load the searchable country list
+            try {
+                const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
+                const data = await response.json();
+                
+                const countries = data.map(item => ({ id: item.name.common.trim(), text: item.name.common.trim() })).sort((a, b) => a.text.localeCompare(b.text)); 
+                countries.unshift({id: '', text: 'Select your nationality', selected: true, disabled: true});
 
-                $('#nationality').select2({ placeholder: "Search or select your nationality", allowClear: true, data: countries });
-            } catch (error) {
-                console.error("Could not load country list:", error);
-                showMessageBox("Setup Warning", "Country list failed to load. Please check network connection.", true);
-            }
-        }
-        
-        // ===============================================
-        // MAIN SUBMISSION LOGIC
-        // ===============================================
-        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = this;
-            const submitButton = document.getElementById('submitButton');
-            const originalButtonText = submitButton.textContent;
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Verifying & Submitting...';
-            submitButton.classList.add('opacity-70');
+                $('#nationality').select2({ placeholder: "Search or select your nationality", allowClear: true, data: countries });
+            } catch (error) {
+                console.error("Could not load country list:", error);
+                showMessageBox("Setup Warning", "Country list failed to load. Please check network connection.", true);
+            }
+        }
+        
+        // ===============================================
+        // MAIN SUBMISSION LOGIC (Updated to use native form submit)
+        // ===============================================
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            // 1. Prevent the default submission so we can run checks first
+            e.preventDefault();
+            
+            const form = this;
+            const submitButton = document.getElementById('submitButton');
+            const originalButtonText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            // Change text to indicate processing
+            submitButton.textContent = 'Verifying & Submitting...';
+            submitButton.classList.add('opacity-70');
 
-            try {
-                
-                // 1. GENERATE RECAPTCHA V3 TOKEN
-                const recaptchaToken = await new Promise((resolve, reject) => {
-                    if (typeof grecaptcha === 'undefined' || typeof grecaptcha.execute === 'undefined') {
-                        reject(new Error("reCAPTCHA API not loaded. Check network or key in <head>."));
-                        return;
-                    }
-                    grecaptcha.ready(function() {
-                        // Execute reCAPTCHA for the 'submit' action
-                        grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
-                            resolve(token);
-                        }, function(error) {
-                            reject(error);
-                        });
-                    });
-                });
-                
-                if (!recaptchaToken) {
-                    throw new Error("reCAPTCHA token was empty after execution.");
-                }
+            try {
+                
+                // 2. GENERATE RECAPTCHA V3 TOKEN
+                const recaptchaToken = await new Promise((resolve, reject) => {
+                    if (typeof grecaptcha === 'undefined' || typeof grecaptcha.execute === 'undefined') {
+                        reject(new Error("reCAPTCHA API not loaded. Check network or key in <head>."));
+                        return;
+                    }
+                    grecaptcha.ready(function() {
+                        // Execute reCAPTCHA for the 'submit' action
+                        grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+                            resolve(token);
+                        }, function(error) {
+                            reject(error);
+                        });
+                    });
+                });
+                
+                if (!recaptchaToken) {
+                    throw new Error("reCAPTCHA token was empty after execution.");
+                }
 
-                // Inject the token into the hidden field
-                document.getElementById('recaptchaToken').value = recaptchaToken;
+                // Inject the token into the hidden field
+                document.getElementById('recaptchaToken').value = recaptchaToken;
 
-                // 2. COLLECT AND CLEAN DATA
-                const formData = new FormData(form);
-                const data = {};
-                
-                // Convert FormData to a standard object
-                formData.forEach((value, key) => { data[key] = value; });
-                
-                // Handle phone number validation and formatting
-                if (!itiInstance || !itiInstance.isValidNumber()) {
-                    showMessageBox("Error", "The entered phone number is invalid. Please check the country code and number.", true);
-                    return;
-                }
-                data.phone = itiInstance.getNumber(window.intlTelInputUtils.numberFormat.INTERNATIONAL);
+                // 3. VALIDATE AND CLEAN PHONE NUMBER
+                if (!itiInstance || !itiInstance.isValidNumber()) {
+                    showMessageBox("Error", "The entered phone number is invalid. Please check the country code and number.", true);
+                    // We must return here to stop execution and go to finally block
+                    return;
+                }
+                // *** CRITICAL CHANGE: Write the correctly formatted phone number back to the input field
+                document.getElementById('phone').value = itiInstance.getNumber(window.intlTelInputUtils.numberFormat.INTERNATIONAL);
 
-                // Handle checkbox groups (amenities)
-                data.amenities = Array.from(form.querySelectorAll('input[name="amenities"]:checked')).map(el => el.value);
-                
-                // Handle single checkboxes (newsletter, terms)
-                data.newsletter = formData.has('newsletter') ? 'Yes' : 'No';
-                data.terms = formData.has('terms') ? 'Yes' : 'No';
-                
-                // 3. SEND TO GOOGLE APPS SCRIPT
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(data) 
-                });
+                // 4. NATIVE FORM SUBMISSION (Bypasses CORS)
+                // This will use the URL specified in the <form action="..."> attribute.
+                form.submit();
 
-                // 4. PROCESS RESPONSE
-                const responseText = await response.text();
-                
-                if (response.ok) {
-                    let result;
-                    try {
-                        result = JSON.parse(responseText);
-                    } catch (e) {
-                        // Log potential parsing error but continue to success if status is OK
-                        console.warn("Server response was successful but could not be parsed as JSON:", responseText);
-                    }
-                    
-                    // Check for server-side spam block results (Honeypot, Timing, reCAPTCHA score)
-                    if (result && result.result === "spam_blocked") {
-                        const reason = result.reason || 'security check failure';
-                        showMessageBox("Spam Blocked 🛡️", `Your submission failed a security check (${reason}). Please review your input and try again.`, true);
-                        return;
-                    }
-                    
-                    if (result && result.result === "error") {
-                        console.error("Server-Side Script Error:", result.message);
-                        showMessageBox("Submission Error ❌", `Server script failed: ${result.message || 'Unknown error'}.`, true);
-                        return;
-                    }
+                // IMPORTANT: Since form.submit() initiates a page load/navigation to the Google Apps Script
+                // URL, any subsequent code, including success/error messages, will not run here.
+                // Success/error handling MUST now be done by the Apps Script redirecting the user
+                // to a success page or returning HTML content.
+                
+            } catch (error) {
+                console.error("Critical Submission Error:", error);
+                showMessageBox("System Error 🛑", `Could not verify submission: ${error.message}. Please check logs.`, true);
+            } finally {
+                // If an error occurred BEFORE form.submit(), reset the button state
+                if (!form.submitted) { // Check if the form was not successfully submitted
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                    submitButton.classList.remove('opacity-70');
+                }
+            }
+        });
 
-                    // SUCCESS
-                    showMessageBox("Success! 🎉", `Thank you, ${data.firstName || 'User'}! Your request is confirmed and we will be in touch shortly.`, false);
-                    form.reset();
-                    $('#nationality').val('').trigger('change'); // Reset Select2 field
-                    itiInstance.setCountry("us"); // Reset phone input country
-                    document.getElementById('formStartTime').value = Date.now(); // Reset timing
-                    
-                } else {
-                    // Log the full non-OK response for debugging
-                    console.error("Fetch failed. Status:", response.status, "Text:", response.statusText, "Response:", responseText);
-                    throw new Error(`Server returned status: ${response.status} - ${response.statusText}`);
-                }
+        // ===============================================
+        // INITIALIZATION
+        // ===============================================
+        $(document).ready(function() {
+            // Set start time for bot detection
+            document.getElementById('formStartTime').value = Date.now();
+            
+            // Load and initialize the country select dropdown
+            loadCountries();
+            
+            // Initialize the International Telephone Input plugin
+            var phoneInput = document.querySelector("#phone");
+            itiInstance = window.intlTelInput(phoneInput, {
+                initialCountry: "us", 
+                preferredCountries: ["us", "gb", "ca", "au", "fr"],
+                separateDialCode: true, 
+                // Ensure utilsScript path is correct for validation to work
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+            });
+        });
+    </script>
 
-            } catch (error) {
-                console.error("Critical Submission Error:", error);
-                showMessageBox("System Error 🛑", `Could not submit: ${error.message}. Please ensure the Google Script URL is correct and re-deploy your Apps Script.`, true);
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-                submitButton.classList.remove('opacity-70');
-            }
-        });
-
-        // ===============================================
-        // INITIALIZATION
-        // ===============================================
-        $(document).ready(function() {
-            // Set start time for bot detection
-            document.getElementById('formStartTime').value = Date.now();
-            
-            // Load and initialize the country select dropdown
-            loadCountries();
-            
-            // Initialize the International Telephone Input plugin
-            var phoneInput = document.querySelector("#phone");
-            itiInstance = window.intlTelInput(phoneInput, {
-                initialCountry: "us", 
-                preferredCountries: ["us", "gb", "ca", "au", "fr"],
-                separateDialCode: true, 
-                // Ensure utilsScript path is correct for validation to work
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-            });
-        });
-    </script>
 </body>
 </html>
+
 
 
