@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accommodation Booking Form - Find Your Perfect Stay</title>
-    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <!-- Google reCAPTCHA API Loader -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- 🛑 CRITICAL: RECAPTCHA V3 SCRIPT LOADING 🛑 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc"></script>
 
-    <!-- Tailwind CSS (for modern styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -147,7 +147,7 @@
         
         <div class="bg-white rounded-xl shadow-lg overflow-hidden form-card">
             <div class="p-8">
-                <form id="bookingForm" class="space-y-8" action="https://script.google.com/macros/s/AKfycbyDgMaY9blhT4-eXIwmsjLSQ51N8Ejq4Ni8sTxZR6y3WvAUo9EiBwYvXkSCw_hghf1ydA/exec">
+                <form id="bookingForm" class="space-y-8" action="https://script.google.com/macros/s/AKfycbyDgMaY9blhT4-eXIwmsjLSQ51N8Ejq4Ni8sTxZR6y3WvAUo9EiBwYvXkSCw_hghf1ydA/exec" method="POST">
 
                     <!-- SPAM PREVENTION FIELDS -->
                     <!-- 1. HONEYPOT FIELD: Bots will fill this, humans won't even see it. -->
@@ -579,6 +579,7 @@
 
 </body>
 </html>
+
 
 
 
