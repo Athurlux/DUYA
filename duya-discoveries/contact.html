@@ -21,6 +21,9 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
+      <!--=========TELPhone numbers =========-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
       <!--=============== TITLE ===============-->
       <title>DUYA DISCOVERIES</title>
 
@@ -550,7 +553,7 @@
             <input type="email" name="Email" class="email" placeholder="Mail" required>
         </div>
         <div class="form-group">
-            <input type="number" name="Phone" class="phone" placeholder="Phone" required>
+            <input type="tel" name="Phone" id="phone" placeholder="Phone Number">
         </div>
         <div class="form-group">
             <textarea name="Message" id="" placeholder="Write your message" required></textarea>
@@ -564,67 +567,111 @@
 
 <script>
     const form = document.getElementById('contactForm');
-    const formResponse = document.getElementById('form-response-message');
+    const responseMessage = document.getElementById('form-response-message');
     const submitButton = document.getElementById('submitButton');
+    const phoneInput = document.getElementById("phone"); // Select the phone input by its ID
     const actionURL = form.action;
-    const SITE_KEY = '6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc'; // Your reCAPTCHA Site Key
+    const SITE_KEY = '6LdqntgrAAAAACvKMED3_4zhjn8qLyXvNrQHRDhc';
+
+    // 🚨 Initialize Intl-Tel-Input 🚨
+    const iti = window.intlTelInput(phoneInput, {
+        preferredCountries: ["us", "gb", "ca", "au"], // Customize your preferred countries
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
 
     // Function to update the response message box
     function updateResponse(message, isSuccess) {
-        formResponse.textContent = message;
-        formResponse.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da'; // Green or Red background
-        formResponse.style.color = isSuccess ? '#155724' : '#721c24'; // Dark Green or Dark Red text
-        formResponse.style.display = 'block';
+        responseMessage.textContent = message;
+        responseMessage.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+        responseMessage.style.color = isSuccess ? '#155724' : '#721c24'; 
+        responseMessage.style.display = 'block';
     }
 
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // 🛑 STOP the page from navigating away (THIS IS THE FIX) 🛑
-        
+        event.preventDefault();
+
+        // ------------------------------------------------------------------
+        // 🚨 PHONE VALIDATION CHECK 🚨
+        const currentPhoneNumber = phoneInput.value.trim();
+        let fullPhoneNumber = '';
+
+        if (currentPhoneNumber !== "") {
+            if (!iti.isValidNumber()) {
+                updateResponse('❌ Please enter a valid phone number, including the correct country code.', false);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                return; // Stop submission on invalid phone number
+            }
+            // Get the full number in E.164 format (e.g., +12025550101)
+            fullPhoneNumber = iti.getNumber();
+        }
+        // ------------------------------------------------------------------
+
+        // 🛑 HONEYPOT CHECK 🛑
+        if (document.getElementById("website").value.trim() !== "") {
+            updateResponse('❌ Submission blocked: potential bot activity detected.', false);
+            return;
+        }
+
         // Initial state update
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
-        formResponse.style.display = 'none';
+        responseMessage.style.display = 'block';
+        responseMessage.style.backgroundColor = '#ffc';
+        responseMessage.style.color = '#333';
+        responseMessage.textContent = 'Sending message... Please wait.';
 
-        // 1. Get reCAPTCHA v3 token asynchronously
+        
+        // 1. Get reCAPTCHA v3 token
         grecaptcha.ready(function() {
             grecaptcha.execute(SITE_KEY, {action: 'submit'}).then(function(token) {
                 
-                // 2. Prepare Form Data (includes all fields and the honeypot)
+                // 2. Prepare Form Data
                 const formData = new FormData(form);
-                formData.append('g-recaptcha-response', token); // Add the token to the data
+                formData.append('g-recaptcha-response', token);
+                
+                // 🚨 CRITICAL: Overwrite the 'Phone' field with the validated international number 🚨
+                if (currentPhoneNumber !== "") {
+                    formData.set('Phone', fullPhoneNumber);
+                } else {
+                    // If the field was empty, ensure the Apps Script still sees an entry (even if blank)
+                    formData.set('Phone', '');
+                }
 
-                // 3. Send Data to Google Apps Script using Fetch
+                // 3. Send Data to Google Apps Script via Fetch API
                 fetch(actionURL, {
                     method: 'POST',
-                    body: formData // Fetch API automatically sets Content-Type for FormData
+                    body: formData,
                 })
                 .then(response => {
-                    // Check if the HTTP status is OK (e.g., 200)
                     if (!response.ok) {
-                        throw new Error(`Server returned an error status: ${response.status}`);
+                        throw new Error('Network response failed: ' + response.statusText);
                     }
-                    return response.json(); // Parse the JSON response from Apps Script
+                    return response.json(); 
                 })
                 .then(data => {
-                    // Check the custom 'result' key from your Apps Script JSON
                     if (data.result === 'success') {
-                        updateResponse('✅ Message sent successfully! We will be in touch shortly.', true);
-                        form.reset(); // Clear the form fields on success
+                        updateResponse('✅ Message sent successfully! We will get back to you shortly.', true);
+                        form.reset(); 
                     } else {
-                        // This handles errors from the Apps Script (honeypot, empty fields, low score)
-                        updateResponse(`❌ Submission failed: ${data.message || 'An unknown server error occurred.'}`, false);
+                        throw new Error(data.message || data.error || 'Unknown server error.');
                     }
                 })
                 .catch(error => {
-                    // This handles network errors (e.g., script URL is down)
-                    updateResponse(`❌ Network error: Could not connect to the server. ${error.message}`, false);
-                    console.error('AJAX Submission Error:', error);
+                    console.error('Submission Error:', error);
+                    updateResponse('❌ Submission failed. Please try again or contact us directly.', false);
                 })
                 .finally(() => {
-                    // Always runs, re-enabling the button
                     submitButton.disabled = false;
                     submitButton.textContent = 'Send Message';
                 });
+            })
+            .catch(error => {
+                 console.error('reCAPTCHA Error:', error);
+                 updateResponse('❌ reCAPTCHA failed to load or execute. Submission blocked.', false);
+                 submitButton.disabled = false;
+                 submitButton.textContent = 'Send Message';
             });
         });
     });
@@ -983,6 +1030,7 @@ backToTop.onclick = function() {
    </body>
 
 </html>
+
 
 
 
